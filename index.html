@@ -169,6 +169,22 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible{ou
 </div>
 </section>
 
+<section style="max-width:1160px;margin:0 auto;padding:8px 24px 0">
+<div style="background:var(--surf);border:1px solid var(--bd);border-radius:16px;padding:28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;align-items:center">
+<div>
+<h2 style="margin:0 0 8px;font:700 28px/1.1 'Space Grotesk',sans-serif;letter-spacing:-.02em">{{t.subTitle}}</h2>
+<p style="margin:0;color:var(--mut);font-size:16px">{{t.subLead}}</p>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+<div style="display:flex;flex-direction:column;gap:6px"><label for="n-make" style="font:600 13px 'Inter',sans-serif;color:var(--mut)">{{t.fMake}}</label><select id="n-make" value="{{subMake}}" onChange="{{onSubMake}}" style="height:46px;box-sizing:border-box;width:100%;background:var(--bg);border:1px solid var(--bd2);border-radius:10px;color:var(--tx);padding:0 12px;font:500 15px 'Inter',sans-serif"><template data-for="makeOpts" data-as="o"><option value="{{o.v}}">{{o.l}}</option></template></select></div>
+<div style="display:flex;flex-direction:column;gap:6px"><label for="n-price" style="font:600 13px 'Inter',sans-serif;color:var(--mut)">{{t.qPrice}}</label><select id="n-price" value="{{subMax}}" onChange="{{onSubMax}}" style="height:46px;box-sizing:border-box;width:100%;background:var(--bg);border:1px solid var(--bd2);border-radius:10px;color:var(--tx);padding:0 12px;font:500 15px 'Inter',sans-serif"><template data-for="priceOpts" data-as="o"><option value="{{o.v}}">{{o.l}}</option></template></select></div>
+<div style="grid-column:1 / -1;display:flex;flex-direction:column;gap:6px"><label for="n-contact" style="font:600 13px 'Inter',sans-serif;color:var(--mut)">{{t.subContact}}</label><input id="n-contact" type="text" style="height:46px;box-sizing:border-box;width:100%;background:var(--bg);border:1px solid var(--bd2);border-radius:10px;color:var(--tx);padding:0 12px;font:500 15px 'Inter',sans-serif"></div>
+<button onClick="{{subscribe}}" style="grid-column:1 / -1;min-height:48px;border:0;border-radius:999px;background:var(--ac);color:#0B0D10;font:700 15px 'Inter',sans-serif">{{t.subBtn}}</button>
+<template data-if="subSent"><div role="status" style="grid-column:1 / -1;border:1px solid #128C4A;border-radius:6px;padding:12px 16px">{{t.subSent}}</div></template>
+</div>
+</div>
+</section>
+
 <section style="max-width:1160px;margin:0 auto;padding:56px 24px 72px">
 <h2 style="margin:0 0 20px;font:700 34px/1.1 'Space Grotesk',sans-serif;letter-spacing:-.02em">{{t.howTitle}}</h2>
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px">
@@ -492,10 +508,6 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible{ou
 </div>
 </div>
 </template>
-<div role="group" aria-label="Theme" style="position:fixed;left:16px;bottom:16px;z-index:50;display:flex;align-items:center;gap:8px;background:var(--surf);border:1px solid var(--bd2);border-radius:999px;padding:6px 10px">
-<span style="font:600 12px 'Inter',sans-serif;color:var(--mut)">{{t.themeLabel}}</span>
-<template data-for="themeBtns" data-as="b"><button onClick="{{b.pick}}" aria-label="{{b.name}}" aria-pressed="{{b.pressed}}" style="width:28px;height:28px;border-radius:50%;border:3px solid {{b.ring}};background:{{b.dot}};padding:0"></button></template>
-</div>
 <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end">
 <a href="https://wa.me/" target="_blank" style="display:inline-flex;align-items:center;min-height:48px;padding:0 20px;border-radius:999px;background:#128C4A;color:#FFFFFF;font-weight:600;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.25)">WhatsApp</a>
 <button onClick="{{toggleChat}}" aria-expanded="{{chatOpen}}" style="min-height:48px;padding:0 20px;border-radius:999px;border:0;background:var(--ac2);color:#FFFFFF;font:700 16px 'Inter',sans-serif;box-shadow:0 4px 12px rgba(0,0,0,.25)">{{t.chatTitle}}</button>
@@ -519,6 +531,7 @@ browseTitle:"Browse by type", brandsTitle:"Popular brands", featured:"Featured v
 catAll:"All", catNew:"New", catUsed:"Used", catRetro:"Retro", catVan:"Vans", catTruck:"Trucks",
 partsLead:"Engine, brakes, suspension, filters, retro parts and parts for trucks and vans. Search by VIN or by model.",
 finLead:"Estimate your monthly payment in a few seconds.",
+subTitle:"Get notified about new arrivals", subLead:"Tell us what you are looking for. We will message you as soon as a matching vehicle arrives.", subContact:"Email or WhatsApp number", subBtn:"Notify me", subSent:"Done! We will contact you when a matching vehicle arrives.",
 howTitle:"How it works", how1:"Pick a vehicle, part or tire", how2:"Message us on WhatsApp or request a call", how3:"Visit the warehouse or arrange delivery",
 sellBandTitle:"Want to sell your car?", contactTitle:"Contact", address:"[Address]", phone:"[Phone]", hours:"[Opening hours]",
 stockTitle:"Vehicles in stock", fMake:"Make", fYear:"Year", fMileage:"Mileage", fFuel:"Fuel", sortLabel:"Sort", sortAsc:"Price: low to high", sortDesc:"Price: high to low", sortYear:"Newest first",
@@ -543,6 +556,7 @@ browseTitle:"Sfoglia per tipo", brandsTitle:"Marche popolari", featured:"In evid
 catAll:"Tutti", catNew:"Nuovi", catUsed:"Usati", catRetro:"D'epoca", catVan:"Furgoni", catTruck:"Camion",
 partsLead:"Motore, freni, sospensioni, filtri, ricambi d'epoca e ricambi per camion e furgoni. Cerca per VIN o per modello.",
 finLead:"Calcola la rata mensile in pochi secondi.",
+subTitle:"Ricevi avvisi sulle novità", subLead:"Dicci cosa cerchi. Ti scriveremo appena arriva un veicolo adatto.", subContact:"Email o numero WhatsApp", subBtn:"Avvisami", subSent:"Fatto! Ti contatteremo quando arriverà un veicolo adatto.",
 howTitle:"Come funziona", how1:"Scegli un veicolo, un ricambio o un pneumatico", how2:"Scrivici su WhatsApp o richiedi una chiamata", how3:"Passa in magazzino o concorda la consegna",
 sellBandTitle:"Vuoi vendere la tua auto?", contactTitle:"Contatti", address:"[Indirizzo]", phone:"[Telefono]", hours:"[Orari di apertura]",
 stockTitle:"Veicoli a magazzino", fMake:"Marca", fYear:"Anno", fMileage:"Chilometri", fFuel:"Carburante", sortLabel:"Ordina", sortAsc:"Prezzo: crescente", sortDesc:"Prezzo: decrescente", sortYear:"Più recenti",
@@ -567,6 +581,7 @@ browseTitle:"Каталог по типам", brandsTitle:"Популярные 
 catAll:"Все", catNew:"Новые", catUsed:"С пробегом", catRetro:"Ретро", catVan:"Фургоны", catTruck:"Траки",
 partsLead:"Двигатель, тормоза, подвеска, фильтры, ретро-запчасти и запчасти для траков и фургонов. Поиск по VIN или по модели.",
 finLead:"Рассчитайте ежемесячный платёж за несколько секунд.",
+subTitle:"Узнавайте о новых поступлениях", subLead:"Расскажите, что вы ищете. Мы напишем, как только появится подходящий автомобиль.", subContact:"Email или номер WhatsApp", subBtn:"Сообщить мне", subSent:"Готово! Мы свяжемся с вами, когда появится подходящий автомобиль.",
 howTitle:"Как это работает", how1:"Выберите авто, запчасть или шины", how2:"Напишите нам в WhatsApp или закажите звонок", how3:"Приезжайте на склад или договоритесь о доставке",
 sellBandTitle:"Хотите продать авто?", contactTitle:"Контакты", address:"[Адрес]", phone:"[Телефон]", hours:"[Часы работы]",
 stockTitle:"Транспорт на складе", fMake:"Марка", fYear:"Год", fMileage:"Пробег", fFuel:"Топливо", sortLabel:"Сортировка", sortAsc:"Цена: по возрастанию", sortDesc:"Цена: по убыванию", sortYear:"Сначала новые",
@@ -591,6 +606,7 @@ browseTitle:"Sirvi tüübi järgi", brandsTitle:"Populaarsed margid", featured:"
 catAll:"Kõik", catNew:"Uued", catUsed:"Kasutatud", catRetro:"Retro", catVan:"Kaubikud", catTruck:"Veokid",
 partsLead:"Mootor, pidurid, vedrustus, filtrid, retro varuosad ning veoki- ja kaubikuosad. Otsi VIN-i või mudeli järgi.",
 finLead:"Arvuta igakuine makse paari sekundiga.",
+subTitle:"Saa teada uutest saabumistest", subLead:"Ütle, mida otsid. Anname teada, kui sobiv sõiduk saabub.", subContact:"E-post või WhatsAppi number", subBtn:"Anna teada", subSent:"Valmis! Võtame ühendust, kui sobiv sõiduk saabub.",
 howTitle:"Kuidas see töötab", how1:"Vali sõiduk, varuosa või rehvid", how2:"Kirjuta meile WhatsAppis või telli tagasihelistus", how3:"Tule lattu või lepi kokku kohaletoimetamine",
 sellBandTitle:"Tahad oma autot müüa?", contactTitle:"Kontakt", address:"[Aadress]", phone:"[Telefon]", hours:"[Lahtiolekuajad]",
 stockTitle:"Sõidukid laos", fMake:"Mark", fYear:"Aasta", fMileage:"Läbisõit", fFuel:"Kütus", sortLabel:"Sorteeri", sortAsc:"Hind: kasvav", sortDesc:"Hind: kahanev", sortYear:"Uuemad enne",
@@ -650,7 +666,7 @@ const PRICES = ["€ 10 000","€ 20 000","€ 30 000","€ 50 000","€ 100 000
 class Component extends DCLogic {
   constructor(...a) {
     super(...a);
-    this.state = {menuOpen:false, langOpen:false, theme:0, lang:"en", view:"home", cat:"all", fuel:"all", sort:"asc", carId:"u1", tab:"parts", season:"all", chat:false, make:"", year:"", km:"", maxPrice:"", tw:"", tp:"", tr:"", pcat:-1, sent:false, cbSent:false, price:30000, down:6000, term:48};
+    this.state = {menuOpen:false, langOpen:false, theme:5, lang:"en", view:"home", cat:"all", fuel:"all", sort:"asc", carId:"u1", tab:"parts", season:"all", chat:false, make:"", year:"", km:"", maxPrice:"", tw:"", tp:"", tr:"", pcat:-1, sent:false, cbSent:false, subMake:"", subMax:"", subSent:false, price:30000, down:6000, term:48};
   }
   componentDidMount() {
     try {
@@ -664,7 +680,10 @@ class Component extends DCLogic {
     const THEMES = [
       {name:"Dark", bg:"#0B0D10", surf:"#151A20", surf2:"#1C232B", bd:"#262D36", bd2:"#3A4552", mut:"#9AA6B5", tx:"#F2F5F9", ac:"#F07A1A", ac2:"#1A6FB8", pr:"#4DA3F0", g1:"#16314B", g2:"#0F1A26", t1:"#141C26", t2:"#13222F", t3:"#261B12", line:"rgba(240,122,26,.35)", dot:"#F07A1A"},
       {name:"Navy", bg:"#08101D", surf:"#0F1B2E", surf2:"#16263D", bd:"#1F3350", bd2:"#3B5578", mut:"#9FB2CC", tx:"#F2F6FC", ac:"#F07A1A", ac2:"#2F8FE0", pr:"#6DB4F5", g1:"#1B4A7A", g2:"#0F2540", t1:"#0F1B2E", t2:"#12263F", t3:"#1B2438", line:"rgba(47,143,224,.4)", dot:"#2F8FE0"},
-      {name:"Light", bg:"#F3F5F8", surf:"#FFFFFF", surf2:"#E8EDF3", bd:"#D5DCE5", bd2:"#8A97A8", mut:"#4F5A68", tx:"#14181D", ac:"#F07A1A", ac2:"#1A6FB8", pr:"#1A6FB8", g1:"#DCE8F5", g2:"#EAF0F7", t1:"#FFFFFF", t2:"#EEF4FB", t3:"#FFF3E8", line:"rgba(240,122,26,.45)", dot:"#FFFFFF"}
+      {name:"Light", bg:"#F3F5F8", surf:"#FFFFFF", surf2:"#E8EDF3", bd:"#D5DCE5", bd2:"#8A97A8", mut:"#4F5A68", tx:"#14181D", ac:"#F07A1A", ac2:"#1A6FB8", pr:"#1A6FB8", g1:"#DCE8F5", g2:"#EAF0F7", t1:"#FFFFFF", t2:"#EEF4FB", t3:"#FFF3E8", line:"rgba(240,122,26,.45)", dot:"#FFFFFF"},
+      {name:"Gold", bg:"#0A0A0A", surf:"#151513", surf2:"#1E1D19", bd:"#2B2A24", bd2:"#4A4638", mut:"#A8A394", tx:"#F6F2E8", ac:"#D9AE4E", ac2:"#B8872B", pr:"#E3BC6A", g1:"#3A2F18", g2:"#1A150B", t1:"#171612", t2:"#1D1A12", t3:"#241D0E", line:"rgba(217,174,78,.4)", dot:"#D9AE4E"},
+      {name:"Sport", bg:"#0E0E10", surf:"#18181B", surf2:"#222226", bd:"#2E2E33", bd2:"#4B4B53", mut:"#A3A3AD", tx:"#F5F5F7", ac:"#FF5A4F", ac2:"#C9302A", pr:"#FF7A70", g1:"#3B1715", g2:"#1A0D0D", t1:"#18181B", t2:"#201416", t3:"#2A1513", line:"rgba(255,90,79,.4)", dot:"#FF5A4F"},
+      {name:"Sand", bg:"#F5F0E8", surf:"#FFFFFF", surf2:"#EDE5D8", bd:"#DDD3C2", bd2:"#9A8F7C", mut:"#5E5647", tx:"#1B1710", ac:"#E0701E", ac2:"#1A6FB8", pr:"#B5540F", g1:"#EADBC3", g2:"#F1E7D6", t1:"#FFFFFF", t2:"#F6EEE0", t3:"#FFF1E0", line:"rgba(224,112,30,.45)", dot:"#E8DCC6"}
     ];
     const th = THEMES[s.theme] || THEMES[0];
     const themeBtns = THEMES.map((x, i) => ({name: x.name, pressed: s.theme === i, dot: x.dot, ring: s.theme === i ? th.tx : th.bd2, pick: () => this.setState({theme: i})}));
@@ -803,6 +822,7 @@ class Component extends DCLogic {
       vTw: s.tw, onTw: set("tw"), vTp: s.tp, onTp: set("tp"), vTr: s.tr, onTr: set("tr"),
       twOpts: opts(["185","195","205","215","225","235","245"]), tpOpts: opts(["40","45","50","55","60","65"]), trOpts: opts(["R15","R16","R17","R18","R19","R20"]),
       sent: s.sent, send: () => this.setState({sent:true}),
+      subMake: s.subMake, onSubMake: set("subMake"), subMax: s.subMax, onSubMax: set("subMax"), subSent: s.subSent, subscribe: () => this.setState({subSent:true}),
       priceVal: s.price, priceDisp: eur(s.price),
       downVal: Math.min(s.down, s.price), downMax: s.price, downDisp: eur(Math.min(s.down, s.price)),
       termVal: s.term, termDisp: s.term + " " + T.monthsWord,
