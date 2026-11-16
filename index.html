@@ -140,6 +140,7 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible{ou
 <template data-for="featuredCars" data-as="c">
 <button class="card" onClick="{{c.pick}}" style="text-align:left;background:var(--surf);border:1px solid var(--bd);border-radius:18px;padding:0;color:var(--tx);display:flex;flex-direction:column;overflow:hidden">
 <div style="height:200px;width:100%;box-sizing:border-box;background:radial-gradient(260px 140px at 70% 95%,rgba(240,122,26,.28),transparent 70%),linear-gradient(160deg,var(--g1) 0%,var(--g2) 60%,var(--bg) 100%);display:flex;align-items:center;justify-content:center;position:relative">
+<template data-if="c.hasImg"><img src="{{c.img}}" alt="" style="position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover"></template>
 <template data-if="c.isCar"><svg viewBox="0 0 160 90" width="250" height="141" aria-hidden="true"><path d="M14 62 L30 40 Q36 32 50 32 L98 32 Q110 32 118 42 L136 48 Q148 50 148 60 L148 68 L14 68 Z" fill="#22364D" stroke="#2F8FE0" stroke-width="1.5"/><circle cx="46" cy="68" r="11" fill="#0B0D10" stroke="#F07A1A" stroke-width="3"/><circle cx="116" cy="68" r="11" fill="#0B0D10" stroke="#F07A1A" stroke-width="3"/></svg></template><template data-if="c.isVan"><svg viewBox="0 0 160 90" width="250" height="141" aria-hidden="true"><path d="M10 24 L110 24 L110 68 L10 68 Z" fill="#22364D" stroke="#2F8FE0" stroke-width="1.5"/><path d="M110 36 L136 36 Q148 38 150 52 L150 68 L110 68 Z" fill="#1A2A3D" stroke="#2F8FE0" stroke-width="1.5"/><circle cx="40" cy="68" r="11" fill="#0B0D10" stroke="#F07A1A" stroke-width="3"/><circle cx="128" cy="68" r="11" fill="#0B0D10" stroke="#F07A1A" stroke-width="3"/></svg></template><template data-if="c.isTruck"><svg viewBox="0 0 160 90" width="250" height="141" aria-hidden="true"><path d="M6 16 L98 16 L98 66 L6 66 Z" fill="#22364D" stroke="#2F8FE0" stroke-width="1.5"/><path d="M104 34 L134 34 Q148 36 150 50 L150 66 L104 66 Z" fill="#1A2A3D" stroke="#2F8FE0" stroke-width="1.5"/><circle cx="28" cy="68" r="10" fill="#0B0D10" stroke="#F07A1A" stroke-width="3"/><circle cx="52" cy="68" r="10" fill="#0B0D10" stroke="#F07A1A" stroke-width="3"/><circle cx="128" cy="68" r="10" fill="#0B0D10" stroke="#F07A1A" stroke-width="3"/></svg></template>
 <span style="position:absolute;left:14px;top:14px;background:var(--surf);color:var(--tx);font:600 12px 'Inter',sans-serif;padding:4px 10px;border-radius:999px">{{c.chip}}</span>
 <span style="position:absolute;left:14px;bottom:14px;background:var(--ac);color:#0B0D10;font:700 16px 'Space Grotesk',sans-serif;padding:6px 14px;border-radius:999px">{{c.price}}</span>
@@ -257,6 +258,7 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible{ou
 <template data-for="listCars" data-as="c">
 <button class="card" onClick="{{c.pick}}" style="text-align:left;background:var(--surf);border:1px solid var(--bd);border-radius:8px;padding:0;color:var(--tx);display:flex;flex-direction:column;overflow:hidden">
 <div style="height:160px;width:100%;box-sizing:border-box;background:radial-gradient(260px 140px at 70% 95%,rgba(240,122,26,.28),transparent 70%),linear-gradient(160deg,var(--g1) 0%,var(--g2) 60%,var(--bg) 100%);display:flex;align-items:center;justify-content:center;position:relative">
+<template data-if="c.hasImg"><img src="{{c.img}}" alt="" style="position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover"></template>
 <template data-if="c.isCar"><svg viewBox="0 0 160 90" width="200" height="113" aria-hidden="true"><path d="M14 62 L30 40 Q36 32 50 32 L98 32 Q110 32 118 42 L136 48 Q148 50 148 60 L148 68 L14 68 Z" fill="#22364D" stroke="#2F8FE0" stroke-width="1.5"/><circle cx="46" cy="68" r="11" fill="var(--bd2)"/><circle cx="116" cy="68" r="11" fill="var(--bd2)"/></svg></template>
 <template data-if="c.isVan"><svg viewBox="0 0 160 90" width="200" height="113" aria-hidden="true"><path d="M10 24 L110 24 L110 68 L10 68 Z" fill="#22364D" stroke="#2F8FE0" stroke-width="1.5"/><path d="M110 36 L136 36 Q148 38 150 52 L150 68 L110 68 Z" fill="#1A2A3D" stroke="#2F8FE0" stroke-width="1.5"/><circle cx="40" cy="68" r="11" fill="var(--bd2)"/><circle cx="128" cy="68" r="11" fill="var(--bd2)"/></svg></template>
 <template data-if="c.isTruck"><svg viewBox="0 0 160 90" width="200" height="113" aria-hidden="true"><path d="M6 16 L98 16 L98 66 L6 66 Z" fill="#22364D" stroke="#2F8FE0" stroke-width="1.5"/><path d="M104 34 L134 34 Q148 36 150 50 L150 66 L104 66 Z" fill="#1A2A3D" stroke="#2F8FE0" stroke-width="1.5"/><circle cx="28" cy="68" r="10" fill="var(--bd2)"/><circle cx="52" cy="68" r="10" fill="var(--bd2)"/><circle cx="128" cy="68" r="10" fill="var(--bd2)"/></svg></template>
@@ -288,6 +290,7 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible{ou
 <div style="display:flex;flex-wrap:wrap;gap:40px;margin-top:12px">
 <div style="flex:1 1 560px;min-width:0;display:flex;flex-direction:column;gap:12px">
 <div style="height:420px;background:var(--surf2);border:1px solid var(--bd);border-radius:8px;display:flex;align-items:center;justify-content:center;position:relative">
+<template data-if="detail.hasImg"><img src="{{detail.img}}" alt="" style="position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;border-radius:8px"></template>
 <template data-if="detail.isCar"><svg viewBox="0 0 160 90" width="320" height="180" aria-hidden="true"><path d="M14 62 L30 40 Q36 32 50 32 L98 32 Q110 32 118 42 L136 48 Q148 50 148 60 L148 68 L14 68 Z" fill="#22364D" stroke="#2F8FE0" stroke-width="1.5"/><circle cx="46" cy="68" r="11" fill="var(--bd2)"/><circle cx="116" cy="68" r="11" fill="var(--bd2)"/></svg></template>
 <template data-if="detail.isVan"><svg viewBox="0 0 160 90" width="320" height="180" aria-hidden="true"><path d="M10 24 L110 24 L110 68 L10 68 Z" fill="#22364D" stroke="#2F8FE0" stroke-width="1.5"/><path d="M110 36 L136 36 Q148 38 150 52 L150 68 L110 68 Z" fill="#1A2A3D" stroke="#2F8FE0" stroke-width="1.5"/><circle cx="40" cy="68" r="11" fill="var(--bd2)"/><circle cx="128" cy="68" r="11" fill="var(--bd2)"/></svg></template>
 <template data-if="detail.isTruck"><svg viewBox="0 0 160 90" width="320" height="180" aria-hidden="true"><path d="M6 16 L98 16 L98 66 L6 66 Z" fill="#22364D" stroke="#2F8FE0" stroke-width="1.5"/><path d="M104 34 L134 34 Q148 36 150 50 L150 66 L104 66 Z" fill="#1A2A3D" stroke="#2F8FE0" stroke-width="1.5"/><circle cx="28" cy="68" r="10" fill="var(--bd2)"/><circle cx="52" cy="68" r="10" fill="var(--bd2)"/><circle cx="128" cy="68" r="10" fill="var(--bd2)"/></svg></template>
@@ -305,6 +308,7 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible{ou
 <h1 style="margin:0;font:800 clamp(30px,4.4vw,44px)/1.1 'Space Grotesk',sans-serif;">{{detail.title}}</h1>
 <div style="font:700 35px/1.2 'Space Grotesk',sans-serif;color:{{accent}}">{{detail.price}}</div>
 <button onClick="{{goVin}}" style="align-self:flex-start;min-height:46px;padding:0 20px;border:1px solid var(--ac);border-radius:999px;background:transparent;color:var(--tx);font:600 14px 'Inter',sans-serif">{{t.vinCta}} · {{vinPrice}} →</button>
+<button onClick="{{goInsp}}" style="align-self:flex-start;min-height:46px;padding:0 20px;border:1px solid var(--ac);border-radius:999px;background:transparent;color:var(--tx);font:600 14px 'Inter',sans-serif">{{t.inspCta}} · {{t.inspFrom}} {{inspPrice}} →</button>
 <div style="background:var(--surf);border:1px solid var(--bd);border-radius:8px;padding:4px 16px">
 <template data-for="detail.rows" data-as="r">
 <div style="display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--surf2)"><span style="color:var(--mut)">{{r.k}}</span><span style="font-weight:600">{{r.v}}</span></div>
@@ -360,6 +364,41 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible{ou
 <template data-if="vinStep2">
 <div role="status" style="border:1px solid #128C4A;border-radius:6px;padding:14px 16px">{{t.vinDone}} {{vinMail}}</div>
 <button onClick="{{vinReset}}" style="min-height:48px;border:1px solid var(--bd2);border-radius:6px;background:transparent;color:var(--tx);font:600 15px 'Inter',sans-serif">{{t.vinAnother}}</button>
+</template>
+</div>
+</section>
+</template>
+
+<!-- ============ PRE-PURCHASE INSPECTION ============ -->
+<template data-if="isInsp">
+<section style="max-width:1100px;margin:0 auto;padding:48px 24px 72px;display:flex;flex-wrap:wrap;gap:48px">
+<div style="flex:1 1 380px;min-width:0;display:flex;flex-direction:column;gap:20px">
+<h1 style="margin:0;font:700 clamp(38px,5vw,56px)/1.05 'Space Grotesk',sans-serif;letter-spacing:-.02em">{{t.inspTitle}}</h1>
+<p style="margin:0;color:var(--mut);font-size:17px;max-width:460px">{{t.inspLead}}</p>
+<div style="font:700 28px 'Space Grotesk',sans-serif;color:{{accent}}">{{t.inspFrom}} {{inspPrice}}</div>
+<div style="border-top:1px solid var(--bd);padding-top:16px">
+<div style="font:600 13px 'Inter',sans-serif;color:var(--mut);margin-bottom:10px">{{t.inspH}}</div>
+<ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:16px">
+<li style="display:flex;gap:10px"><span style="color:var(--ac);font-weight:700">✓</span>{{t.inspI1}}</li>
+<li style="display:flex;gap:10px"><span style="color:var(--ac);font-weight:700">✓</span>{{t.inspI2}}</li>
+<li style="display:flex;gap:10px"><span style="color:var(--ac);font-weight:700">✓</span>{{t.inspI3}}</li>
+<li style="display:flex;gap:10px"><span style="color:var(--ac);font-weight:700">✓</span>{{t.inspI4}}</li>
+</ul>
+</div>
+</div>
+<div style="flex:1 1 380px;min-width:0;background:var(--surf);border:1px solid var(--bd);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:16px;align-self:flex-start">
+<template data-if="inspStep0">
+<div style="display:flex;flex-direction:column;gap:6px"><label for="i-link" style="font:600 13px 'Inter',sans-serif;color:var(--mut)">{{t.inspLink}}</label><input id="i-link" type="text" value="{{inspLink}}" onChange="{{onInspLink}}" style="height:48px;box-sizing:border-box;width:100%;background:var(--surf);border:1px solid var(--bd2);border-radius:6px;color:var(--tx);padding:0 12px;font:500 16px 'Inter',sans-serif"></div>
+<div style="display:flex;flex-direction:column;gap:6px"><label for="i-city" style="font:600 13px 'Inter',sans-serif;color:var(--mut)">{{t.inspCityL}}</label><input id="i-city" type="text" value="{{inspCity}}" onChange="{{onInspCity}}" style="height:48px;box-sizing:border-box;width:100%;background:var(--surf);border:1px solid var(--bd2);border-radius:6px;color:var(--tx);padding:0 12px;font:500 16px 'Inter',sans-serif"></div>
+<div style="display:flex;flex-direction:column;gap:6px"><label for="i-phone" style="font:600 13px 'Inter',sans-serif;color:var(--mut)">{{t.inspPhoneL}}</label><input id="i-phone" type="text" value="{{inspPhone}}" onChange="{{onInspPhone}}" style="height:48px;box-sizing:border-box;width:100%;background:var(--surf);border:1px solid var(--bd2);border-radius:6px;color:var(--tx);padding:0 12px;font:500 16px 'Inter',sans-serif"></div>
+<div style="display:flex;flex-direction:column;gap:6px"><label for="i-date" style="font:600 13px 'Inter',sans-serif;color:var(--mut)">{{t.inspDateL}}</label><input id="i-date" type="text" value="{{inspDate}}" onChange="{{onInspDate}}" style="height:48px;box-sizing:border-box;width:100%;background:var(--surf);border:1px solid var(--bd2);border-radius:6px;color:var(--tx);padding:0 12px;font:500 16px 'Inter',sans-serif"></div>
+<template data-if="inspErr"><div role="alert" style="border:1px solid #C0392B;border-radius:6px;padding:10px 14px;color:var(--tx)">{{t.inspErr}}</div></template>
+<button onClick="{{inspNext}}" style="min-height:52px;border:0;border-radius:6px;background:var(--ac);color:#0B0D10;font:700 16px 'Inter',sans-serif">{{t.inspBtn}}</button>
+</template>
+<template data-if="inspStep1">
+<div role="status" style="border:1px solid #128C4A;border-radius:6px;padding:14px 16px">{{t.inspDone}}</div>
+<a href="{{inspWa}}" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;min-height:52px;border-radius:6px;background:#128C4A;color:#FFFFFF;font:700 16px 'Inter',sans-serif;text-decoration:none">{{t.inspWa}}</a>
+<button onClick="{{inspReset}}" style="min-height:48px;border:1px solid var(--bd2);border-radius:6px;background:transparent;color:var(--tx);font:600 15px 'Inter',sans-serif">{{t.inspAnother}}</button>
 </template>
 </div>
 </section>
@@ -561,7 +600,7 @@ catAll:"All", catNew:"New", catUsed:"Used", catRetro:"Retro", catVan:"Vans", cat
 partsLead:"Engine, brakes, suspension, filters, retro parts and parts for trucks and vans. Search by VIN or by model.",
 finLead:"Estimate your monthly payment in a few seconds.",
 subTitle:"Get notified about new arrivals", subLead:"Tell us what you are looking for. We will message you as soon as a matching vehicle arrives.", subContact:"Email or WhatsApp number", subBtn:"Notify me", subSent:"Done! We will contact you when a matching vehicle arrives.",
-navVin:"VIN check", vinTitle:"VIN check", vinLead:"Check a vehicle history before you buy. Enter the VIN, pay online and get the report by email.", vinH:"The report shows", vinI1:"Accident and damage records", vinI2:"Mileage history, odometer rollback check", vinI3:"Stolen and wanted databases", vinI4:"Previous owners and registrations", vinLabel:"VIN (17 characters)", vinEmailL:"Email for the report", vinBtn:"Check VIN", vinErr:"Enter a valid 17-character VIN and an email.", vinOrder:"Your order", vinPayNote:"Demo: the real card payment (Paysera / Stripe) is connected here.", vinPay:"Pay", vinBackL:"Back", vinDone:"Payment received. The report will be sent to", vinAnother:"Check another VIN", vinCta:"VIN check",
+navInsp:"Inspection", inspCta:"Pre-purchase inspection", inspFrom:"from", inspTitle:"Pre-purchase inspection", inspLead:"Our expert checks the car in person before you pay. You get a photo report and a clear verdict.", inspH:"What we check", inspI1:"Body, paint thickness and signs of repair", inspI2:"Engine, gearbox and a test drive", inspI3:"Electronics, suspension and tyres", inspI4:"Photo and video report within 24 hours", inspLink:"Link to the ad or VIN", inspCityL:"City where the car is", inspPhoneL:"Phone or WhatsApp", inspDateL:"Preferred date", inspErr:"Please fill in the link, city and a valid phone number.", inspBtn:"Request inspection", inspDone:"Request received. We will confirm the date and the exact price shortly.", inspWa:"Send via WhatsApp", inspAnother:"New request", navVin:"VIN check", vinTitle:"VIN check", vinLead:"Check a vehicle history before you buy. Enter the VIN, pay online and get the report by email.", vinH:"The report shows", vinI1:"Accident and damage records", vinI2:"Mileage history, odometer rollback check", vinI3:"Stolen and wanted databases", vinI4:"Previous owners and registrations", vinLabel:"VIN (17 characters)", vinEmailL:"Email for the report", vinBtn:"Check VIN", vinErr:"Enter a valid 17-character VIN and an email.", vinOrder:"Your order", vinPayNote:"Demo: the real card payment (Paysera / Stripe) is connected here.", vinPay:"Pay", vinBackL:"Back", vinDone:"Payment received. The report will be sent to", vinAnother:"Check another VIN", vinCta:"VIN check",
 howTitle:"How it works", how1:"Pick a vehicle, part or tire", how2:"Message us on WhatsApp or request a call", how3:"Visit the warehouse or arrange delivery",
 sellBandTitle:"Want to sell your car?", contactTitle:"Contact", address:"[Address]", phone:"[Phone]", hours:"[Opening hours]",
 stockTitle:"Vehicles in stock", fMake:"Make", fYear:"Year", fMileage:"Mileage", fFuel:"Fuel", sortLabel:"Sort", sortAsc:"Price: low to high", sortDesc:"Price: high to low", sortYear:"Newest first",
@@ -587,7 +626,7 @@ catAll:"Tutti", catNew:"Nuovi", catUsed:"Usati", catRetro:"D'epoca", catVan:"Fur
 partsLead:"Motore, freni, sospensioni, filtri, ricambi d'epoca e ricambi per camion e furgoni. Cerca per VIN o per modello.",
 finLead:"Calcola la rata mensile in pochi secondi.",
 subTitle:"Ricevi avvisi sulle novità", subLead:"Dicci cosa cerchi. Ti scriveremo appena arriva un veicolo adatto.", subContact:"Email o numero WhatsApp", subBtn:"Avvisami", subSent:"Fatto! Ti contatteremo quando arriverà un veicolo adatto.",
-navVin:"Controllo VIN", vinTitle:"Controllo VIN", vinLead:"Verifica la storia del veicolo prima di comprare. Inserisci il VIN, paga online e ricevi il report via email.", vinH:"Il report mostra", vinI1:"Incidenti e danni", vinI2:"Storico chilometri, controllo contachilometri", vinI3:"Banche dati furti e ricercati", vinI4:"Precedenti proprietari e immatricolazioni", vinLabel:"VIN (17 caratteri)", vinEmailL:"Email per il report", vinBtn:"Controlla VIN", vinErr:"Inserisci un VIN di 17 caratteri e un'email valida.", vinOrder:"Il tuo ordine", vinPayNote:"Demo: qui si collega il pagamento reale con carta (Paysera / Stripe).", vinPay:"Paga", vinBackL:"Indietro", vinDone:"Pagamento ricevuto. Il report sarà inviato a", vinAnother:"Controlla un altro VIN", vinCta:"Controllo VIN",
+navInsp:"Ispezione", inspCta:"Ispezione prima dell'acquisto", inspFrom:"da", inspTitle:"Ispezione prima dell'acquisto", inspLead:"Un nostro esperto controlla l'auto di persona prima che tu paghi. Ricevi un report fotografico e un giudizio chiaro.", inspH:"Cosa controlliamo", inspI1:"Carrozzeria, spessore della vernice e tracce di riparazioni", inspI2:"Motore, cambio e prova su strada", inspI3:"Elettronica, sospensioni e pneumatici", inspI4:"Report foto e video entro 24 ore", inspLink:"Link all'annuncio o VIN", inspCityL:"Città dove si trova l'auto", inspPhoneL:"Telefono o WhatsApp", inspDateL:"Data preferita", inspErr:"Inserisci link, città e un numero di telefono valido.", inspBtn:"Richiedi ispezione", inspDone:"Richiesta ricevuta. Ti confermeremo presto data e prezzo esatto.", inspWa:"Invia su WhatsApp", inspAnother:"Nuova richiesta", navVin:"Controllo VIN", vinTitle:"Controllo VIN", vinLead:"Verifica la storia del veicolo prima di comprare. Inserisci il VIN, paga online e ricevi il report via email.", vinH:"Il report mostra", vinI1:"Incidenti e danni", vinI2:"Storico chilometri, controllo contachilometri", vinI3:"Banche dati furti e ricercati", vinI4:"Precedenti proprietari e immatricolazioni", vinLabel:"VIN (17 caratteri)", vinEmailL:"Email per il report", vinBtn:"Controlla VIN", vinErr:"Inserisci un VIN di 17 caratteri e un'email valida.", vinOrder:"Il tuo ordine", vinPayNote:"Demo: qui si collega il pagamento reale con carta (Paysera / Stripe).", vinPay:"Paga", vinBackL:"Indietro", vinDone:"Pagamento ricevuto. Il report sarà inviato a", vinAnother:"Controlla un altro VIN", vinCta:"Controllo VIN",
 howTitle:"Come funziona", how1:"Scegli un veicolo, un ricambio o un pneumatico", how2:"Scrivici su WhatsApp o richiedi una chiamata", how3:"Passa in magazzino o concorda la consegna",
 sellBandTitle:"Vuoi vendere la tua auto?", contactTitle:"Contatti", address:"[Indirizzo]", phone:"[Telefono]", hours:"[Orari di apertura]",
 stockTitle:"Veicoli a magazzino", fMake:"Marca", fYear:"Anno", fMileage:"Chilometri", fFuel:"Carburante", sortLabel:"Ordina", sortAsc:"Prezzo: crescente", sortDesc:"Prezzo: decrescente", sortYear:"Più recenti",
@@ -613,7 +652,7 @@ catAll:"Все", catNew:"Новые", catUsed:"С пробегом", catRetro:"�
 partsLead:"Двигатель, тормоза, подвеска, фильтры, ретро-запчасти и запчасти для траков и фургонов. Поиск по VIN или по модели.",
 finLead:"Рассчитайте ежемесячный платёж за несколько секунд.",
 subTitle:"Узнавайте о новых поступлениях", subLead:"Расскажите, что вы ищете. Мы напишем, как только появится подходящий автомобиль.", subContact:"Email или номер WhatsApp", subBtn:"Сообщить мне", subSent:"Готово! Мы свяжемся с вами, когда появится подходящий автомобиль.",
-navVin:"VIN-проверка", vinTitle:"VIN-проверка", vinLead:"Проверьте историю автомобиля до покупки. Введите VIN, оплатите онлайн и получите отчёт на почту.", vinH:"В отчёте", vinI1:"ДТП и повреждения", vinI2:"История пробега, проверка скрутки одометра", vinI3:"Базы угнанных и разыскиваемых", vinI4:"Прежние владельцы и регистрации", vinLabel:"VIN (17 символов)", vinEmailL:"Email для отчёта", vinBtn:"Проверить VIN", vinErr:"Введите VIN из 17 символов и email.", vinOrder:"Ваш заказ", vinPayNote:"Демо: здесь подключается реальная оплата картой (Paysera / Stripe).", vinPay:"Оплатить", vinBackL:"Назад", vinDone:"Оплата получена. Отчёт придёт на", vinAnother:"Проверить другой VIN", vinCta:"VIN-проверка",
+navInsp:"Осмотр", inspCta:"Осмотр перед покупкой", inspFrom:"от", inspTitle:"Осмотр перед покупкой", inspLead:"Наш эксперт проверит автомобиль на месте, пока вы ещё не заплатили. Вы получите фотоотчёт и понятное заключение.", inspH:"Что проверяем", inspI1:"Кузов, толщину краски и следы ремонта", inspI2:"Двигатель, коробку и тест-драйв", inspI3:"Электронику, подвеску и шины", inspI4:"Фото и видео отчёт в течение 24 часов", inspLink:"Ссылка на объявление или VIN", inspCityL:"Город, где находится машина", inspPhoneL:"Телефон или WhatsApp", inspDateL:"Удобная дата", inspErr:"Заполните ссылку, город и корректный номер телефона.", inspBtn:"Заказать осмотр", inspDone:"Заявка получена. Мы скоро подтвердим дату и точную стоимость.", inspWa:"Отправить в WhatsApp", inspAnother:"Новая заявка", navVin:"VIN-проверка", vinTitle:"VIN-проверка", vinLead:"Проверьте историю автомобиля до покупки. Введите VIN, оплатите онлайн и получите отчёт на почту.", vinH:"В отчёте", vinI1:"ДТП и повреждения", vinI2:"История пробега, проверка скрутки одометра", vinI3:"Базы угнанных и разыскиваемых", vinI4:"Прежние владельцы и регистрации", vinLabel:"VIN (17 символов)", vinEmailL:"Email для отчёта", vinBtn:"Проверить VIN", vinErr:"Введите VIN из 17 символов и email.", vinOrder:"Ваш заказ", vinPayNote:"Демо: здесь подключается реальная оплата картой (Paysera / Stripe).", vinPay:"Оплатить", vinBackL:"Назад", vinDone:"Оплата получена. Отчёт придёт на", vinAnother:"Проверить другой VIN", vinCta:"VIN-проверка",
 howTitle:"Как это работает", how1:"Выберите авто, запчасть или шины", how2:"Напишите нам в WhatsApp или закажите звонок", how3:"Приезжайте на склад или договоритесь о доставке",
 sellBandTitle:"Хотите продать авто?", contactTitle:"Контакты", address:"[Адрес]", phone:"[Телефон]", hours:"[Часы работы]",
 stockTitle:"Транспорт на складе", fMake:"Марка", fYear:"Год", fMileage:"Пробег", fFuel:"Топливо", sortLabel:"Сортировка", sortAsc:"Цена: по возрастанию", sortDesc:"Цена: по убыванию", sortYear:"Сначала новые",
@@ -639,7 +678,7 @@ catAll:"Kõik", catNew:"Uued", catUsed:"Kasutatud", catRetro:"Retro", catVan:"Ka
 partsLead:"Mootor, pidurid, vedrustus, filtrid, retro varuosad ning veoki- ja kaubikuosad. Otsi VIN-i või mudeli järgi.",
 finLead:"Arvuta igakuine makse paari sekundiga.",
 subTitle:"Saa teada uutest saabumistest", subLead:"Ütle, mida otsid. Anname teada, kui sobiv sõiduk saabub.", subContact:"E-post või WhatsAppi number", subBtn:"Anna teada", subSent:"Valmis! Võtame ühendust, kui sobiv sõiduk saabub.",
-navVin:"VIN-kontroll", vinTitle:"VIN-kontroll", vinLead:"Kontrolli sõiduki ajalugu enne ostu. Sisesta VIN, maksa veebis ja saa aruanne e-postile.", vinH:"Aruandes on", vinI1:"Avariid ja kahjustused", vinI2:"Läbisõidu ajalugu, odomeetri kontroll", vinI3:"Varastatud ja tagaotsitavate andmebaasid", vinI4:"Varasemad omanikud ja registreerimised", vinLabel:"VIN (17 märki)", vinEmailL:"E-post aruande jaoks", vinBtn:"Kontrolli VIN", vinErr:"Sisesta 17-märgiline VIN ja e-post.", vinOrder:"Sinu tellimus", vinPayNote:"Demo: siia ühendatakse päris kaardimakse (Paysera / Stripe).", vinPay:"Maksa", vinBackL:"Tagasi", vinDone:"Makse laekus. Aruanne saadetakse aadressile", vinAnother:"Kontrolli teist VIN-i", vinCta:"VIN-kontroll",
+navInsp:"Ülevaatus", inspCta:"Ülevaatus enne ostu", inspFrom:"alates", inspTitle:"Ülevaatus enne ostu", inspLead:"Meie ekspert vaatab auto kohapeal üle enne, kui sa maksad. Saad fotoaruande ja selge hinnangu.", inspH:"Mida kontrollime", inspI1:"Kere, värvi paksust ja remondijälgi", inspI2:"Mootorit, käigukasti ja proovisõitu", inspI3:"Elektroonikat, vedrustust ja rehve", inspI4:"Foto- ja videoaruanne 24 tunni jooksul", inspLink:"Kuulutuse link või VIN", inspCityL:"Linn, kus auto asub", inspPhoneL:"Telefon või WhatsApp", inspDateL:"Sobiv kuupäev", inspErr:"Täida link, linn ja korrektne telefoninumber.", inspBtn:"Telli ülevaatus", inspDone:"Päring vastu võetud. Kinnitame peagi kuupäeva ja täpse hinna.", inspWa:"Saada WhatsAppi", inspAnother:"Uus päring", navVin:"VIN-kontroll", vinTitle:"VIN-kontroll", vinLead:"Kontrolli sõiduki ajalugu enne ostu. Sisesta VIN, maksa veebis ja saa aruanne e-postile.", vinH:"Aruandes on", vinI1:"Avariid ja kahjustused", vinI2:"Läbisõidu ajalugu, odomeetri kontroll", vinI3:"Varastatud ja tagaotsitavate andmebaasid", vinI4:"Varasemad omanikud ja registreerimised", vinLabel:"VIN (17 märki)", vinEmailL:"E-post aruande jaoks", vinBtn:"Kontrolli VIN", vinErr:"Sisesta 17-märgiline VIN ja e-post.", vinOrder:"Sinu tellimus", vinPayNote:"Demo: siia ühendatakse päris kaardimakse (Paysera / Stripe).", vinPay:"Maksa", vinBackL:"Tagasi", vinDone:"Makse laekus. Aruanne saadetakse aadressile", vinAnother:"Kontrolli teist VIN-i", vinCta:"VIN-kontroll",
 howTitle:"Kuidas see töötab", how1:"Vali sõiduk, varuosa või rehvid", how2:"Kirjuta meile WhatsAppis või telli tagasihelistus", how3:"Tule lattu või lepi kokku kohaletoimetamine",
 sellBandTitle:"Tahad oma autot müüa?", contactTitle:"Kontakt", address:"[Aadress]", phone:"[Telefon]", hours:"[Lahtiolekuajad]",
 stockTitle:"Sõidukid laos", fMake:"Mark", fYear:"Aasta", fMileage:"Läbisõit", fFuel:"Kütus", sortLabel:"Sorteeri", sortAsc:"Hind: kasvav", sortDesc:"Hind: kahanev", sortYear:"Uuemad enne",
@@ -664,7 +703,7 @@ const CARS = [
 {id:"n1", cat:"new", shape:"car", title:"Škoda Octavia Combi", year:2026, km:0, fuel:"petrol", trans:"auto", kw:110, price:31900},
 {id:"n2", cat:"new", shape:"car", title:"Toyota Corolla Touring Sports", year:2026, km:0, fuel:"hybrid", trans:"auto", kw:103, price:33500},
 {id:"n3", cat:"new", shape:"car", title:"Volkswagen ID.4", year:2026, km:0, fuel:"electric", trans:"auto", kw:210, price:47900},
-{id:"u1", cat:"used", shape:"car", title:"Audi A6 Avant 40 TDI", year:2020, km:84000, fuel:"diesel", trans:"auto", kw:150, price:28900},
+{id:"u1", cat:"used", shape:"car", title:"Audi A6 Avant 40 TDI", year:2025, km:12000, fuel:"diesel", trans:"auto", kw:150, price:54900},
 {id:"u2", cat:"used", shape:"car", title:"BMW 320d Touring", year:2019, km:112000, fuel:"diesel", trans:"auto", kw:140, price:21500},
 {id:"u3", cat:"used", shape:"car", title:"Volvo XC60 B4", year:2021, km:67000, fuel:"hybrid", trans:"auto", kw:145, price:34900},
 {id:"r1", cat:"retro", shape:"car", title:"Alfa Romeo Spider Series 2", year:1983, km:96000, fuel:"petrol", trans:"manual", kw:96, price:24900},
@@ -693,13 +732,14 @@ const TIRES = [
 const PARTS = [{k:"p1", cat:1, price:49}, {k:"p2", cat:5, price:9}, {k:"p3", cat:4, price:139}, {k:"p4", cat:3, price:16}];
 
 const YEARS = ["2024+","2020+","2015+","2000+","< 1990"];
+const IMGS = {n1:"img/skoda.jpg", r1:"img/alfa.jpg", n3:"img/id4.jpg", u1:"img/audi.jpg", v2:"img/sprinter.jpg", t1:"img/volvo.jpg"};
 const KMS = ["< 50 000 km","< 100 000 km","< 200 000 km"];
 const PRICES = ["€ 10 000","€ 20 000","€ 30 000","€ 50 000","€ 100 000"];
 
 class Component extends DCLogic {
   constructor(...a) {
     super(...a);
-    this.state = {menuOpen:false, langOpen:false, theme:5, lang:"en", view:"home", cat:"all", fuel:"all", sort:"asc", carId:"u1", tab:"parts", season:"all", chat:false, make:"", year:"", km:"", maxPrice:"", tw:"", tp:"", tr:"", pcat:-1, sent:false, cbSent:false, subMake:"", subMax:"", subSent:false, vin:"", vinMail:"", vinStep:0, vinErr:false, price:30000, down:6000, term:48};
+    this.state = {menuOpen:false, langOpen:false, theme:5, lang:"en", view:"home", cat:"all", fuel:"all", sort:"asc", carId:"u1", tab:"parts", season:"all", chat:false, make:"", year:"", km:"", maxPrice:"", tw:"", tp:"", tr:"", pcat:-1, sent:false, cbSent:false, subMake:"", subMax:"", subSent:false, vin:"", vinMail:"", vinStep:0, vinErr:false, insp:"", inspLink:"", inspCity:"", inspPhone:"", inspDate:"", inspStep:0, inspErr:false, price:30000, down:6000, term:48};
   }
   componentDidMount() {
     try {
@@ -758,11 +798,11 @@ class Component extends DCLogic {
       id: c.id, title: c.title, price: eur(c.price),
       sub: [c.year, fmtN(c.km) + " km", fuelLabel[c.fuel]].join(" · "),
       chip: catLabel[c.cat], chipBg: catColor[c.cat],
-      isCar: c.shape === "car", isVan: c.shape === "van", isTruck: c.shape === "truck",
+      img: IMGS[c.id] || "", hasImg: !!IMGS[c.id], isCar: c.shape === "car" && !IMGS[c.id], isVan: c.shape === "van" && !IMGS[c.id], isTruck: c.shape === "truck" && !IMGS[c.id],
       pick: () => this.setState({view:"detail", carId:c.id, cbSent:false})
     });
 
-    const navItems = [["cars", T.navCars], ["parts", T.navParts], ["sell", T.navSell], ["finance", T.navFinance], ["vin", T.navVin]].map(([v, label]) => {
+    const navItems = [["cars", T.navCars], ["parts", T.navParts], ["sell", T.navSell], ["finance", T.navFinance], ["vin", T.navVin], ["insp", T.navInsp]].map(([v, label]) => {
       const active = s.view === v || (v === "cars" && s.view === "detail");
       return {label, pick: go(v), bb: active ? "var(--ac)" : "transparent"};
     });
@@ -804,7 +844,7 @@ class Component extends DCLogic {
     const d = CARS.find((c) => c.id === s.carId) || CARS[0];
     const detail = {
       title: d.title, price: eur(d.price), chip: catLabel[d.cat], chipBg: catColor[d.cat], isRetro: d.cat === "retro",
-      isCar: d.shape === "car", isVan: d.shape === "van", isTruck: d.shape === "truck",
+      img: IMGS[d.id] || "", hasImg: !!IMGS[d.id], isCar: d.shape === "car" && !IMGS[d.id], isVan: d.shape === "van" && !IMGS[d.id], isTruck: d.shape === "truck" && !IMGS[d.id],
       rows: [
         {k:T.fYear, v:String(d.year)},
         {k:T.fMileage, v:fmtN(d.km) + " km"},
@@ -840,7 +880,12 @@ class Component extends DCLogic {
       vinStep0: s.vinStep === 0, vinStep1: s.vinStep === 1, vinStep2: s.vinStep === 2, vinErr: s.vinErr, vinVal: s.vin, vinMail: s.vinMail, vinPrice: "€ 9.90",
       onVin: (e) => this.setState({vin: e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, ""), vinErr:false}), onVinMail: (e) => this.setState({vinMail: e.target.value, vinErr:false}),
       vinNext: () => this.setState(/^[A-HJ-NPR-Z0-9]{17}$/.test(s.vin) && /^\S+@\S+\.\S+$/.test(s.vinMail) ? {vinStep:1, vinErr:false} : {vinErr:true}),
-      vinPayGo: () => this.setState({vinStep:2}), vinBack: () => this.setState({vinStep:0}), vinReset: () => this.setState({vinStep:0, vin:"", vinMail:""}), goVin: go("vin"),
+      vinPayGo: () => this.setState({vinStep:2}), vinBack: () => this.setState({vinStep:0}), vinReset: () => this.setState({vinStep:0, vin:"", vinMail:""}), goVin: go("vin"), goInsp: go("insp"),
+      isInsp: s.view === "insp", inspStep0: s.inspStep === 0, inspStep1: s.inspStep === 1, inspErr: s.inspErr, inspLink: s.inspLink, inspCity: s.inspCity, inspPhone: s.inspPhone, inspDate: s.inspDate, inspPrice: "€ 149",
+      onInspLink: (e) => this.setState({inspLink: e.target.value, inspErr:false}), onInspCity: (e) => this.setState({inspCity: e.target.value, inspErr:false}), onInspPhone: (e) => this.setState({inspPhone: e.target.value, inspErr:false}), onInspDate: (e) => this.setState({inspDate: e.target.value, inspErr:false}),
+      inspNext: () => this.setState(s.inspLink.trim().length > 4 && s.inspCity.trim() && s.inspPhone.replace(/\D/g,"").length >= 7 ? {inspStep:1, inspErr:false} : {inspErr:true}),
+      inspReset: () => this.setState({inspStep:0, inspLink:"", inspCity:"", inspPhone:"", inspDate:""}),
+      inspWa: "https://wa.me/?text=" + encodeURIComponent("Pre-purchase inspection: " + s.inspLink + " | " + s.inspCity + " | " + s.inspPhone + " | " + s.inspDate),
       goHome: go("home"), goCars: () => this.setState({view:"cars", cat:"all", make:"", year:"", km:"", maxPrice:"", fuel:"all"}),
       goCarsKeep: go("cars"), goParts: () => this.setState({view:"parts", tab:"parts"}), goTires: () => this.setState({view:"parts", tab:"tires"}),
       goSell: go("sell"), goFinance: go("finance"), goSearch: go("cars"),
