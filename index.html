@@ -27,11 +27,7 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible{ou
 <header style="background:#0A0A0B;border-bottom:1px solid var(--line)">
 <div style="max-width:1160px;margin:0 auto;padding:10px 24px;display:flex;flex-wrap:wrap;align-items:center;gap:4px 48px">
 <button onClick="{{goHome}}" aria-label="{{brand}}" style="background:none;border:0;padding:0;min-height:56px;display:flex;align-items:center;gap:10px;color:var(--ac);font:700 20px/1 'Space Grotesk',sans-serif;letter-spacing:.02em"><img src="logo-mark.png" alt="" style="height:46px;width:auto;display:block"><span>{{brand}}</span></button>
-<nav aria-label="Main" style="display:flex;flex-wrap:wrap;gap:0 36px;flex:1 1 auto">
-<template data-for="navItems" data-as="n">
-<button onClick="{{n.pick}}" style="background:none;border:0;border-bottom:3px solid {{n.bb}};border-radius:0;color:#FFFFFF;font:600 15px 'Inter',sans-serif;min-height:44px;padding:0 2px">{{n.label}}</button>
-</template>
-</nav>
+<div style="flex:1 1 auto"></div>
 <div style="position:relative">
 <button onClick="{{toggleLang}}" aria-label="Language" aria-expanded="{{langOpen}}" style="min-height:44px;padding:0 14px;border-radius:999px;border:1px solid #6F86A3;background:transparent;color:#FFFFFF;display:inline-flex;align-items:center;gap:8px;font:600 14px 'Inter',sans-serif"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c3 3 3 16 0 19M12 2.5c-3 3-3 16 0 19"/></svg>{{curLang}}</button>
 <template data-if="langOpen">
@@ -40,6 +36,16 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible{ou
 <button onClick="{{l.pick}}" aria-pressed="{{l.pressed}}" style="text-align:left;min-height:40px;padding:0 12px;border:0;border-radius:8px;background:{{l.bg}};color:{{l.fg}};font:600 14px 'Inter',sans-serif">{{l.name}}</button>
 </template>
 </div>
+</template>
+</div>
+<div style="position:relative">
+<button onClick="{{toggleMenu}}" aria-label="Menu" aria-expanded="{{menuOpen}}" style="width:46px;min-height:44px;border-radius:999px;border:1px solid #6F86A3;background:transparent;color:#FFFFFF;display:inline-flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+<template data-if="menuOpen">
+<nav aria-label="Main" style="position:absolute;right:0;top:50px;z-index:60;min-width:220px;background:#151A20;border:1px solid #3A4552;border-radius:12px;padding:6px;display:flex;flex-direction:column;box-shadow:0 8px 24px rgba(0,0,0,.4)">
+<template data-for="navItems" data-as="n">
+<button onClick="{{n.pick}}" style="text-align:left;min-height:44px;padding:0 14px;border:0;border-radius:8px;background:transparent;color:#FFFFFF;font:600 15px 'Inter',sans-serif;border-left:3px solid {{n.bb}}">{{n.label}}</button>
+</template>
+</nav>
 </template>
 </div>
 </div>
@@ -628,7 +634,7 @@ const PRICES = ["€ 10 000","€ 20 000","€ 30 000","€ 50 000","€ 100 000
 class Component extends DCLogic {
   constructor(...a) {
     super(...a);
-    this.state = {langOpen:false, theme:0, lang:"en", view:"home", cat:"all", fuel:"all", sort:"asc", carId:"u1", tab:"parts", season:"all", chat:false, make:"", year:"", km:"", maxPrice:"", tw:"", tp:"", tr:"", pcat:-1, sent:false, cbSent:false, price:30000, down:6000, term:48};
+    this.state = {menuOpen:false, langOpen:false, theme:0, lang:"en", view:"home", cat:"all", fuel:"all", sort:"asc", carId:"u1", tab:"parts", season:"all", chat:false, make:"", year:"", km:"", maxPrice:"", tw:"", tp:"", tr:"", pcat:-1, sent:false, cbSent:false, price:30000, down:6000, term:48};
   }
   componentDidMount() {
     try {
@@ -652,7 +658,7 @@ class Component extends DCLogic {
     const fmtN = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     const eur = (n) => "€ " + fmtN(n);
     const num = (v) => Number(String(v).replace(/[^0-9]/g, ""));
-    const go = (v) => () => this.setState({view: v});
+    const go = (v) => () => this.setState({view: v, menuOpen: false});
     const set = (key) => (e) => this.setState({[key]: e.target.value});
 
     const catLabel = {new:T.catNew, used:T.catUsed, retro:T.catRetro, van:T.catVan, truck:T.catTruck};
@@ -788,7 +794,7 @@ class Component extends DCLogic {
       onDown: (e) => this.setState({down: Number(e.target.value)}),
       onTerm: (e) => this.setState({term: Number(e.target.value)}),
       monthlyDisp: eur(Math.round(monthly)), loanDisp: eur(principal), rateDisp: rate + " %",
-      langOpen: s.langOpen, toggleLang: () => this.setState({langOpen: !this.state.langOpen}), curLang: s.lang.toUpperCase(), chatOpen: s.chat, toggleChat: () => this.setState({chat: !this.state.chat})
+      langOpen: s.langOpen, toggleLang: () => this.setState({langOpen: !this.state.langOpen, menuOpen: false}), menuOpen: s.menuOpen, toggleMenu: () => this.setState({menuOpen: !this.state.menuOpen, langOpen: false}), curLang: s.lang.toUpperCase(), chatOpen: s.chat, toggleChat: () => this.setState({chat: !this.state.chat})
     };
   }
 }
