@@ -28,6 +28,7 @@ button:active{transform:scale(.97)}
 [style*="top:70px"]{animation:pop .18s ease-out}
 [aria-label="AI assistant"],[aria-expanded]{will-change:transform}
 .hdr-nav{display:none}
+@media(max-width:700px){[aria-label=Theme]{bottom:84px !important}}
 @media(min-width:900px){.hdr{grid-template-columns:auto 1fr auto !important;gap:24px !important}.hdr-logo{order:1}.hdr-nav{order:2;display:flex;justify-content:center;gap:4px}.hdr-lang{order:3;justify-self:end !important}.hdr-burger{display:none !important}.lang-dd{left:auto !important;right:max(28px,calc((100vw - 1160px)/2 + 28px)) !important}}
 @media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
 .tile:hover{background:var(--surf2) !important}
@@ -514,6 +515,10 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible{ou
 </div>
 </div>
 </template>
+<div role="group" aria-label="Theme" style="position:fixed;left:16px;bottom:16px;z-index:50;display:flex;align-items:center;gap:8px;background:var(--surf);border:1px solid var(--bd2);border-radius:999px;padding:6px 10px">
+<span style="font:600 12px 'Inter',sans-serif;color:var(--mut)">{{t.themeLabel}}</span>
+<template data-for="themeBtns" data-as="b"><button onClick="{{b.pick}}" aria-label="{{b.name}}" aria-pressed="{{b.pressed}}" style="width:28px;height:28px;border-radius:50%;border:3px solid {{b.ring}};background:{{b.dot}};padding:0"></button></template>
+</div>
 <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end">
 <a href="https://wa.me/" target="_blank" style="display:inline-flex;align-items:center;min-height:48px;padding:0 20px;border-radius:999px;background:#128C4A;color:#FFFFFF;font-weight:600;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.25)">WhatsApp</a>
 <button onClick="{{toggleChat}}" aria-expanded="{{chatOpen}}" style="min-height:48px;padding:0 20px;border-radius:999px;border:0;background:var(--ac2);color:#FFFFFF;font:700 16px 'Inter',sans-serif;box-shadow:0 4px 12px rgba(0,0,0,.25)">{{t.chatTitle}}</button>
