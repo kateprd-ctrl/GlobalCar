@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GLOBAL CAR: админка</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0B0D10;--surf:#151A20;--surf2:#1C232B;--bd:#262D36;--bd2:#3A4552;--mut:#9AA6B5;--tx:#F2F5F9;--ac:#F07A1A;--ac2:#1A6FB8}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.45 'Inter',sans-serif}
+.app{display:flex;min-height:100vh}
+aside.side{width:220px;flex:none;background:#0A0A0B;border-right:1px solid var(--bd);padding:20px 14px;display:flex;flex-direction:column;gap:4px}
+.brand{display:flex;align-items:center;gap:10px;padding:0 8px 18px;font:700 18px/1 'Space Grotesk',sans-serif;color:var(--ac)}
+.brand img{height:40px}.brand small{color:var(--mut);font:600 12px 'Inter',sans-serif;letter-spacing:.12em}
+.mi{padding:10px 12px;border-radius:10px;color:#C7CCD6}
+.mi.on{background:var(--ac);color:#0B0D10;font-weight:700}
+main{flex:1;min-width:0;padding:28px;display:flex;flex-direction:column;gap:16px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+h1{margin:0;font:700 32px/1.1 'Space Grotesk',sans-serif}
+.btn{min-height:44px;padding:0 20px;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;background:var(--ac);color:#0B0D10;font:700 15px 'Inter',sans-serif;border:0}
+.btn.o{background:transparent;border:1.5px solid var(--tx);color:var(--tx)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{padding:8px 16px;border-radius:999px;border:1px solid var(--bd2);font-weight:600}
+.chips span.on{background:var(--tx);color:var(--bg);border-color:var(--tx)}
+.tbl{background:var(--surf);border:1px solid var(--bd);border-radius:16px;overflow:hidden}
+.row,.hd{display:grid;grid-template-columns:48px minmax(140px,2fr) 88px 52px 88px 104px 118px;gap:8px;padding:12px 14px;font-size:14px;align-items:center;border-top:1px solid var(--bd)}
+.hd{border-top:0;background:var(--surf2);font:700 12px 'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
+.row.sel{background:#201912}
+.ph{width:48px;height:36px;border-radius:6px;background:linear-gradient(160deg,#16314B,#0F1A26)}
+.nm{font-weight:600}.ok{color:#5BD08A;font-weight:600}.dr{color:var(--mut);font-weight:600}.lg{font:700 13px 'Inter',sans-serif;letter-spacing:.05em}.w{color:#F2B705}
+.note{color:var(--mut);font-size:13px}
+aside.card{width:360px;flex:none;background:var(--surf);border-left:1px solid var(--bd);padding:28px 24px;display:flex;flex-direction:column;gap:14px}
+.card h2{margin:0;font:700 22px/1.2 'Space Grotesk',sans-serif}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.f{display:flex;flex-direction:column;gap:4px}.f>span,.lab{font:600 12px 'Inter',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+.in{height:42px;border:1px solid var(--bd2);border-radius:10px;padding:0 12px;display:flex;align-items:center;background:var(--bg)}
+.tabs{display:flex;gap:6px}.tabs span{padding:6px 14px;border-radius:999px;border:1px solid var(--bd2);font-weight:600}.tabs span.on{background:var(--ac);color:#0B0D10;border-color:var(--ac)}
+.ta{height:96px;border:1px solid var(--bd2);border-radius:10px;padding:10px;color:var(--mut);background:var(--bg)}
+.drop{height:72px;border:2px dashed var(--bd2);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--mut)}
+.acts{display:flex;gap:10px;margin-top:auto}.acts .btn{flex:1}
+@media(max-width:1100px){.app{flex-direction:column}aside.side{width:auto;flex-direction:row;flex-wrap:wrap;border-right:0;border-bottom:1px solid var(--bd)}aside.card{width:auto;border-left:0;border-top:1px solid var(--bd)}.row,.hd{grid-template-columns:48px 1fr 90px}.row>span:nth-child(n+4),.hd>span:nth-child(n+4){display:none}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="side"><div class="brand"><img src="logo-mark.png" alt=""><span>GLOBAL CAR <small>ADMIN</small></span></div><div class="mi on">Транспорт</div><div class="mi">Запчасти</div><div class="mi">Шины</div><div class="mi">Заявки (WhatsApp, формы)</div><div class="mi">Продажа авто от клиентов</div><div class="mi">Отзывы</div><div class="mi">Блог</div><div class="mi">Переводы EN · IT · RU · ET</div><div class="mi">ИИ-чат</div></aside>
+<main>
+<div class="top"><h1>Транспорт</h1><span class="btn">+ Добавить</span></div>
+<div class="chips"><span class="on">Все</span><span>Новые</span><span>С пробегом</span><span>Ретро</span><span>Фургоны</span><span>Траки</span></div>
+<div class="tbl"><div class="hd"><span>Фото</span><span>Название</span><span>Тип</span><span>Год</span><span>Цена</span><span>Статус</span><span>Языки</span></div><div class="row"><span class="ph"></span><span class="nm">Audi A6 Avant 40 TDI</span><span>С пробегом</span><span>2020</span><span>€ 28 900</span><span class="ok">Опубликовано</span><span class="lg">RU EN IT ET</span></div><div class="row sel"><span class="ph"></span><span class="nm">Alfa Romeo Spider Series 2</span><span>Ретро</span><span>1983</span><span>€ 24 900</span><span class="ok">Опубликовано</span><span class="lg">RU EN IT <span class=w>ET ⚠</span></span></div><div class="row"><span class="ph"></span><span class="nm">Mercedes-Benz Sprinter 316</span><span>Фургоны</span><span>2021</span><span>€ 32 900</span><span class="ok">Опубликовано</span><span class="lg">RU EN IT ET</span></div><div class="row"><span class="ph"></span><span class="nm">Volvo FH 460 4x2</span><span>Траки</span><span>2019</span><span>€ 49 900</span><span class="dr">Черновик</span><span class="lg"><span class=w>RU ✓ EN ⚠ IT ⚠ ET ⚠</span></span></div><div class="row"><span class="ph"></span><span class="nm">Škoda Octavia Combi</span><span>Новые</span><span>2026</span><span>€ 31 900</span><span class="ok">Опубликовано</span><span class="lg">RU EN IT ET</span></div></div>
+<div class="note">⚠ означает, что перевод не заполнен: на сайте для этого языка будет показан английский. Данные в таблице пример.</div>
+</main>
+<aside class="card">
+<h2>Карточка: Alfa Romeo Spider</h2>
+<div class="grid"><div class="f"><span>Тип</span><div class="in">Ретро</div></div><div class="f"><span>Марка</span><div class="in">Alfa Romeo</div></div><div class="f"><span>Модель</span><div class="in">Spider Series 2</div></div><div class="f"><span>Год</span><div class="in">1983</div></div><div class="f"><span>Пробег, км</span><div class="in">96 000</div></div><div class="f"><span>Цена, €</span><div class="in">24 900</div></div></div>
+<div style="display:flex;flex-direction:column;gap:6px"><span class="lab">Описание и история по языкам</span>
+<div class="tabs"><span class="on">RU</span><span>EN</span><span>IT</span><span style="color:#F2B705">ET ⚠</span></div>
+<div class="ta">История владельцев, реставрация, документы</div>
+<div class="note">Подсказка: ИИ может подготовить перевод на остальные языки, вы проверяете и публикуете.</div></div>
+<div style="display:flex;flex-direction:column;gap:6px"><span class="lab">Фото</span><div class="drop">Перетащите фото сюда</div></div>
+<div class="acts"><span class="btn">Опубликовать</span><span class="btn o">Черновик</span></div>
+</aside>
+</div>
+</body>
+</html>
