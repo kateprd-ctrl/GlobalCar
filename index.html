@@ -27,7 +27,8 @@ button:active{transform:scale(.97)}
 .enter main section:nth-child(n+4){animation-delay:.24s}
 [style*="top:70px"]{animation:pop .18s ease-out}
 [aria-label="AI assistant"],[aria-expanded]{will-change:transform}
-@media(max-width:700px){[aria-label=Theme]{bottom:84px !important}}
+.hdr-nav{display:none}
+@media(min-width:900px){.hdr{grid-template-columns:auto 1fr auto !important;gap:24px !important}.hdr-logo{order:1}.hdr-nav{order:2;display:flex;justify-content:center;gap:4px}.hdr-lang{order:3;justify-self:end !important}.hdr-burger{display:none !important}.lang-dd{left:auto !important;right:max(28px,calc((100vw - 1160px)/2 + 28px)) !important}}
 @media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
 .tile:hover{background:var(--surf2) !important}
 button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
@@ -42,19 +43,24 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible{ou
 
 <!-- HEADER -->
 <header style="background:#0A0A0B;border-bottom:1px solid var(--line)">
-<div style="max-width:1160px;margin:0 auto;padding:10px 28px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px">
-<div style="justify-self:start"><div style="position:relative">
+<div class="hdr" style="max-width:1160px;margin:0 auto;padding:10px 28px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px">
+<div class="hdr-lang" style="justify-self:start"><div style="position:relative">
 <button onClick="{{toggleLang}}" aria-label="Language" aria-expanded="{{langOpen}}" style="min-height:44px;padding:0 14px;border-radius:999px;border:1px solid #6F86A3;background:transparent;color:#FFFFFF;display:inline-flex;align-items:center;gap:8px;font:600 14px 'Inter',sans-serif"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c3 3 3 16 0 19M12 2.5c-3 3-3 16 0 19"/></svg>{{curLang}}</button>
 <template data-if="langOpen">
-<div style="position:fixed;left:28px;top:70px;z-index:60;min-width:150px;max-width:calc(100vw - 32px);background:#151A20;border:1px solid #3A4552;border-radius:12px;padding:6px;display:flex;flex-direction:column;box-shadow:0 8px 24px rgba(0,0,0,.4)">
+<div class="lang-dd" style="position:fixed;left:28px;top:70px;z-index:60;min-width:150px;max-width:calc(100vw - 32px);background:#151A20;border:1px solid #3A4552;border-radius:12px;padding:6px;display:flex;flex-direction:column;box-shadow:0 8px 24px rgba(0,0,0,.4)">
 <template data-for="langs" data-as="l">
 <button onClick="{{l.pick}}" aria-pressed="{{l.pressed}}" style="text-align:left;min-height:40px;padding:0 12px;border:0;border-radius:8px;background:{{l.bg}};color:{{l.fg}};font:600 14px 'Inter',sans-serif">{{l.name}}</button>
 </template>
 </div>
 </template>
 </div></div>
-<button onClick="{{goHome}}" aria-label="{{brand}}" style="background:none;border:0;padding:0;min-height:56px;min-width:0;display:flex;align-items:center;gap:10px;color:var(--ac);font:700 clamp(15px,4.5vw,20px)/1 'Space Grotesk',sans-serif;white-space:nowrap;letter-spacing:.02em"><img src="logo-mark.png" alt="" style="height:clamp(34px,10vw,46px);width:auto;display:block"><span>{{brand}}</span></button>
-<div style="justify-self:end"><div style="position:relative">
+<button class="hdr-logo" onClick="{{goHome}}" aria-label="{{brand}}" style="background:none;border:0;padding:0;min-height:56px;min-width:0;display:flex;align-items:center;gap:10px;color:var(--ac);font:700 clamp(15px,4.5vw,20px)/1 'Space Grotesk',sans-serif;white-space:nowrap;letter-spacing:.02em"><img src="logo-mark.png" alt="" style="height:clamp(34px,10vw,46px);width:auto;display:block"><span>{{brand}}</span></button>
+<nav class="hdr-nav" aria-label="Main menu">
+<template data-for="navItems" data-as="n">
+<button onClick="{{n.pick}}" style="min-height:44px;padding:0 16px;border:0;border-bottom:2px solid {{n.bb}};background:transparent;color:#FFFFFF;font:600 15px 'Inter',sans-serif;white-space:nowrap">{{n.label}}</button>
+</template>
+</nav>
+<div class="hdr-burger" style="justify-self:end"><div style="position:relative">
 <button onClick="{{toggleMenu}}" aria-label="Menu" aria-expanded="{{menuOpen}}" style="width:46px;min-height:44px;border-radius:999px;border:1px solid #6F86A3;background:transparent;color:#FFFFFF;display:inline-flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
 <template data-if="menuOpen">
 <nav aria-label="Main" style="position:fixed;right:28px;top:70px;z-index:60;min-width:220px;max-width:calc(100vw - 32px);background:#151A20;border:1px solid #3A4552;border-radius:12px;padding:6px;display:flex;flex-direction:column;box-shadow:0 8px 24px rgba(0,0,0,.4)">
