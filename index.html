@@ -304,6 +304,7 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible{ou
 <span style="align-self:flex-start;background:{{detail.chipBg}};color:#0B0D10;font:600 14px 'Inter',sans-serif;padding:4px 10px;border-radius:3px">{{detail.chip}}</span>
 <h1 style="margin:0;font:800 clamp(30px,4.4vw,44px)/1.1 'Space Grotesk',sans-serif;">{{detail.title}}</h1>
 <div style="font:700 35px/1.2 'Space Grotesk',sans-serif;color:{{accent}}">{{detail.price}}</div>
+<button onClick="{{goVin}}" style="align-self:flex-start;min-height:46px;padding:0 20px;border:1px solid var(--ac);border-radius:999px;background:transparent;color:var(--tx);font:600 14px 'Inter',sans-serif">{{t.vinCta}} · {{vinPrice}} →</button>
 <div style="background:var(--surf);border:1px solid var(--bd);border-radius:8px;padding:4px 16px">
 <template data-for="detail.rows" data-as="r">
 <div style="display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--surf2)"><span style="color:var(--mut)">{{r.k}}</span><span style="font-weight:600">{{r.v}}</span></div>
@@ -321,6 +322,45 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible{ou
 </div>
 <template data-if="cbSent"><div role="status" style="border:1px solid #128C4A;border-radius:6px;padding:12px 16px;background:var(--surf)">{{t.sentText}}</div></template>
 </div>
+</div>
+</section>
+</template>
+
+<!-- ============ VIN CHECK ============ -->
+<template data-if="isVin">
+<section style="max-width:1100px;margin:0 auto;padding:48px 24px 72px;display:flex;flex-wrap:wrap;gap:48px">
+<div style="flex:1 1 380px;min-width:0;display:flex;flex-direction:column;gap:20px">
+<h1 style="margin:0;font:700 clamp(38px,5vw,56px)/1.05 'Space Grotesk',sans-serif;letter-spacing:-.02em">{{t.vinTitle}}</h1>
+<p style="margin:0;color:var(--mut);font-size:17px;max-width:460px">{{t.vinLead}}</p>
+<div style="border-top:1px solid var(--bd);padding-top:16px">
+<div style="font:600 13px 'Inter',sans-serif;color:var(--mut);margin-bottom:10px">{{t.vinH}}</div>
+<ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:16px">
+<li style="display:flex;gap:10px"><span style="color:var(--ac);font-weight:700">✓</span>{{t.vinI1}}</li>
+<li style="display:flex;gap:10px"><span style="color:var(--ac);font-weight:700">✓</span>{{t.vinI2}}</li>
+<li style="display:flex;gap:10px"><span style="color:var(--ac);font-weight:700">✓</span>{{t.vinI3}}</li>
+<li style="display:flex;gap:10px"><span style="color:var(--ac);font-weight:700">✓</span>{{t.vinI4}}</li>
+</ul>
+</div>
+</div>
+<div style="flex:1 1 380px;min-width:0;background:var(--surf);border:1px solid var(--bd);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:16px;align-self:flex-start">
+<template data-if="vinStep0">
+<div style="display:flex;flex-direction:column;gap:6px"><label for="v-vin" style="font:600 13px 'Inter',sans-serif;color:var(--mut)">{{t.vinLabel}}</label><input id="v-vin" type="text" maxlength="17" value="{{vinVal}}" onChange="{{onVin}}" style="height:48px;box-sizing:border-box;width:100%;background:var(--surf);border:1px solid var(--bd2);border-radius:6px;color:var(--tx);padding:0 12px;font:500 16px 'Inter',sans-serif;letter-spacing:.08em"></div>
+<div style="display:flex;flex-direction:column;gap:6px"><label for="v-mail" style="font:600 13px 'Inter',sans-serif;color:var(--mut)">{{t.vinEmailL}}</label><input id="v-mail" type="text" value="{{vinMail}}" onChange="{{onVinMail}}" style="height:48px;box-sizing:border-box;width:100%;background:var(--surf);border:1px solid var(--bd2);border-radius:6px;color:var(--tx);padding:0 12px;font:500 16px 'Inter',sans-serif"></div>
+<template data-if="vinErr"><div role="alert" style="border:1px solid #C0392B;border-radius:6px;padding:10px 14px;color:var(--tx)">{{t.vinErr}}</div></template>
+<button onClick="{{vinNext}}" style="min-height:52px;border:0;border-radius:6px;background:var(--ac);color:#0B0D10;font:700 16px 'Inter',sans-serif">{{t.vinBtn}} · {{vinPrice}}</button>
+</template>
+<template data-if="vinStep1">
+<div style="font:600 13px 'Inter',sans-serif;color:var(--mut)">{{t.vinOrder}}</div>
+<div style="display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--bd);padding-bottom:10px"><span style="font:600 15px 'Inter',sans-serif;letter-spacing:.06em;word-break:break-all">{{vinVal}}</span><span style="font:700 22px 'Space Grotesk',sans-serif">{{vinPrice}}</span></div>
+<div style="color:var(--mut);font-size:14px">{{vinMail}}</div>
+<div style="border:2px dashed var(--bd2);border-radius:6px;padding:14px 16px;color:var(--mut);font-size:14px">{{t.vinPayNote}}</div>
+<button onClick="{{vinPayGo}}" style="min-height:52px;border:0;border-radius:6px;background:var(--ac);color:#0B0D10;font:700 16px 'Inter',sans-serif">{{t.vinPay}} {{vinPrice}}</button>
+<button onClick="{{vinBack}}" style="background:none;border:0;color:var(--tx);min-height:40px;font:600 14px 'Inter',sans-serif">← {{t.vinBackL}}</button>
+</template>
+<template data-if="vinStep2">
+<div role="status" style="border:1px solid #128C4A;border-radius:6px;padding:14px 16px">{{t.vinDone}} {{vinMail}}</div>
+<button onClick="{{vinReset}}" style="min-height:48px;border:1px solid var(--bd2);border-radius:6px;background:transparent;color:var(--tx);font:600 15px 'Inter',sans-serif">{{t.vinAnother}}</button>
+</template>
 </div>
 </section>
 </template>
@@ -492,36 +532,14 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible{ou
 </div>
 </footer>
 
-<!-- FLOATING: WhatsApp + AI chat -->
+<!-- FLOATING: WhatsApp -->
 <div style="position:fixed;right:16px;bottom:16px;z-index:50;display:flex;flex-direction:column;align-items:flex-end;gap:10px">
-<template data-if="chatOpen">
-<div role="dialog" aria-label="{{t.chatTitle}}" style="width:min(340px,calc(100vw - 32px));background:var(--surf);border:1px solid var(--bd2);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 10px 30px rgba(20,33,61,.25)">
-<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 8px 8px 16px;background:var(--ac2);color:#FFFFFF">
-<span style="font:700 16px 'Inter',sans-serif;">{{t.chatTitle}}</span>
-<button onClick="{{toggleChat}}" aria-label="{{t.chatClose}}" style="min-width:44px;min-height:44px;border:0;background:none;color:#FFFFFF;font:700 18px 'Inter',sans-serif">×</button>
-</div>
-<div style="padding:16px;display:flex;flex-direction:column;gap:12px">
-<div style="background:var(--surf2);border-radius:6px;padding:12px;color:var(--tx)">{{t.chatHello}}</div>
-<div style="display:flex;flex-wrap:wrap;gap:8px">
-<button style="min-height:44px;padding:0 14px;border-radius:999px;border:1px solid var(--bd2);background:var(--surf);color:var(--tx);font:600 14px 'Inter',sans-serif">{{t.chatQ1}}</button>
-<button style="min-height:44px;padding:0 14px;border-radius:999px;border:1px solid var(--bd2);background:var(--surf);color:var(--tx);font:600 14px 'Inter',sans-serif">{{t.chatQ2}}</button>
-<button style="min-height:44px;padding:0 14px;border-radius:999px;border:1px solid var(--bd2);background:var(--surf);color:var(--tx);font:600 14px 'Inter',sans-serif">{{t.chatQ3}}</button>
-</div>
-<div style="color:var(--mut);font-size:13px">{{t.chatSoon}}</div>
-<div style="display:flex;gap:8px">
-<input type="text" aria-label="{{t.chatInput}}" placeholder="{{t.chatInput}}" style="flex:1;min-width:0;height:44px;box-sizing:border-box;background:var(--surf);border:1px solid var(--bd2);border-radius:6px;color:var(--tx);padding:0 12px;font:500 15px 'Inter',sans-serif">
-<button aria-label="Send" style="min-width:44px;min-height:44px;border:0;border-radius:6px;background:{{accent}};color:#FFFFFF;font:700 16px 'Inter',sans-serif">→</button>
-</div>
-</div>
-</div>
-</template>
 <div role="group" aria-label="Theme" style="position:fixed;left:16px;bottom:16px;z-index:50;display:flex;align-items:center;gap:8px;background:var(--surf);border:1px solid var(--bd2);border-radius:999px;padding:6px 10px">
 <span style="font:600 12px 'Inter',sans-serif;color:var(--mut)">{{t.themeLabel}}</span>
 <template data-for="themeBtns" data-as="b"><button onClick="{{b.pick}}" aria-label="{{b.name}}" aria-pressed="{{b.pressed}}" style="width:28px;height:28px;border-radius:50%;border:3px solid {{b.ring}};background:{{b.dot}};padding:0"></button></template>
 </div>
 <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end">
 <a href="https://wa.me/" target="_blank" style="display:inline-flex;align-items:center;min-height:48px;padding:0 20px;border-radius:999px;background:#128C4A;color:#FFFFFF;font-weight:600;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.25)">WhatsApp</a>
-<button onClick="{{toggleChat}}" aria-expanded="{{chatOpen}}" style="min-height:48px;padding:0 20px;border-radius:999px;border:0;background:var(--ac2);color:#FFFFFF;font:700 16px 'Inter',sans-serif;box-shadow:0 4px 12px rgba(0,0,0,.25)">{{t.chatTitle}}</button>
 </div>
 </div>
 
@@ -543,6 +561,7 @@ catAll:"All", catNew:"New", catUsed:"Used", catRetro:"Retro", catVan:"Vans", cat
 partsLead:"Engine, brakes, suspension, filters, retro parts and parts for trucks and vans. Search by VIN or by model.",
 finLead:"Estimate your monthly payment in a few seconds.",
 subTitle:"Get notified about new arrivals", subLead:"Tell us what you are looking for. We will message you as soon as a matching vehicle arrives.", subContact:"Email or WhatsApp number", subBtn:"Notify me", subSent:"Done! We will contact you when a matching vehicle arrives.",
+navVin:"VIN check", vinTitle:"VIN check", vinLead:"Check a vehicle history before you buy. Enter the VIN, pay online and get the report by email.", vinH:"The report shows", vinI1:"Accident and damage records", vinI2:"Mileage history, odometer rollback check", vinI3:"Stolen and wanted databases", vinI4:"Previous owners and registrations", vinLabel:"VIN (17 characters)", vinEmailL:"Email for the report", vinBtn:"Check VIN", vinErr:"Enter a valid 17-character VIN and an email.", vinOrder:"Your order", vinPayNote:"Demo: the real card payment (Paysera / Stripe) is connected here.", vinPay:"Pay", vinBackL:"Back", vinDone:"Payment received. The report will be sent to", vinAnother:"Check another VIN", vinCta:"VIN check",
 howTitle:"How it works", how1:"Pick a vehicle, part or tire", how2:"Message us on WhatsApp or request a call", how3:"Visit the warehouse or arrange delivery",
 sellBandTitle:"Want to sell your car?", contactTitle:"Contact", address:"[Address]", phone:"[Phone]", hours:"[Opening hours]",
 stockTitle:"Vehicles in stock", fMake:"Make", fYear:"Year", fMileage:"Mileage", fFuel:"Fuel", sortLabel:"Sort", sortAsc:"Price: low to high", sortDesc:"Price: high to low", sortYear:"Newest first",
@@ -568,6 +587,7 @@ catAll:"Tutti", catNew:"Nuovi", catUsed:"Usati", catRetro:"D'epoca", catVan:"Fur
 partsLead:"Motore, freni, sospensioni, filtri, ricambi d'epoca e ricambi per camion e furgoni. Cerca per VIN o per modello.",
 finLead:"Calcola la rata mensile in pochi secondi.",
 subTitle:"Ricevi avvisi sulle novità", subLead:"Dicci cosa cerchi. Ti scriveremo appena arriva un veicolo adatto.", subContact:"Email o numero WhatsApp", subBtn:"Avvisami", subSent:"Fatto! Ti contatteremo quando arriverà un veicolo adatto.",
+navVin:"Controllo VIN", vinTitle:"Controllo VIN", vinLead:"Verifica la storia del veicolo prima di comprare. Inserisci il VIN, paga online e ricevi il report via email.", vinH:"Il report mostra", vinI1:"Incidenti e danni", vinI2:"Storico chilometri, controllo contachilometri", vinI3:"Banche dati furti e ricercati", vinI4:"Precedenti proprietari e immatricolazioni", vinLabel:"VIN (17 caratteri)", vinEmailL:"Email per il report", vinBtn:"Controlla VIN", vinErr:"Inserisci un VIN di 17 caratteri e un'email valida.", vinOrder:"Il tuo ordine", vinPayNote:"Demo: qui si collega il pagamento reale con carta (Paysera / Stripe).", vinPay:"Paga", vinBackL:"Indietro", vinDone:"Pagamento ricevuto. Il report sarà inviato a", vinAnother:"Controlla un altro VIN", vinCta:"Controllo VIN",
 howTitle:"Come funziona", how1:"Scegli un veicolo, un ricambio o un pneumatico", how2:"Scrivici su WhatsApp o richiedi una chiamata", how3:"Passa in magazzino o concorda la consegna",
 sellBandTitle:"Vuoi vendere la tua auto?", contactTitle:"Contatti", address:"[Indirizzo]", phone:"[Telefono]", hours:"[Orari di apertura]",
 stockTitle:"Veicoli a magazzino", fMake:"Marca", fYear:"Anno", fMileage:"Chilometri", fFuel:"Carburante", sortLabel:"Ordina", sortAsc:"Prezzo: crescente", sortDesc:"Prezzo: decrescente", sortYear:"Più recenti",
@@ -593,6 +613,7 @@ catAll:"Все", catNew:"Новые", catUsed:"С пробегом", catRetro:"�
 partsLead:"Двигатель, тормоза, подвеска, фильтры, ретро-запчасти и запчасти для траков и фургонов. Поиск по VIN или по модели.",
 finLead:"Рассчитайте ежемесячный платёж за несколько секунд.",
 subTitle:"Узнавайте о новых поступлениях", subLead:"Расскажите, что вы ищете. Мы напишем, как только появится подходящий автомобиль.", subContact:"Email или номер WhatsApp", subBtn:"Сообщить мне", subSent:"Готово! Мы свяжемся с вами, когда появится подходящий автомобиль.",
+navVin:"VIN-проверка", vinTitle:"VIN-проверка", vinLead:"Проверьте историю автомобиля до покупки. Введите VIN, оплатите онлайн и получите отчёт на почту.", vinH:"В отчёте", vinI1:"ДТП и повреждения", vinI2:"История пробега, проверка скрутки одометра", vinI3:"Базы угнанных и разыскиваемых", vinI4:"Прежние владельцы и регистрации", vinLabel:"VIN (17 символов)", vinEmailL:"Email для отчёта", vinBtn:"Проверить VIN", vinErr:"Введите VIN из 17 символов и email.", vinOrder:"Ваш заказ", vinPayNote:"Демо: здесь подключается реальная оплата картой (Paysera / Stripe).", vinPay:"Оплатить", vinBackL:"Назад", vinDone:"Оплата получена. Отчёт придёт на", vinAnother:"Проверить другой VIN", vinCta:"VIN-проверка",
 howTitle:"Как это работает", how1:"Выберите авто, запчасть или шины", how2:"Напишите нам в WhatsApp или закажите звонок", how3:"Приезжайте на склад или договоритесь о доставке",
 sellBandTitle:"Хотите продать авто?", contactTitle:"Контакты", address:"[Адрес]", phone:"[Телефон]", hours:"[Часы работы]",
 stockTitle:"Транспорт на складе", fMake:"Марка", fYear:"Год", fMileage:"Пробег", fFuel:"Топливо", sortLabel:"Сортировка", sortAsc:"Цена: по возрастанию", sortDesc:"Цена: по убыванию", sortYear:"Сначала новые",
@@ -618,6 +639,7 @@ catAll:"Kõik", catNew:"Uued", catUsed:"Kasutatud", catRetro:"Retro", catVan:"Ka
 partsLead:"Mootor, pidurid, vedrustus, filtrid, retro varuosad ning veoki- ja kaubikuosad. Otsi VIN-i või mudeli järgi.",
 finLead:"Arvuta igakuine makse paari sekundiga.",
 subTitle:"Saa teada uutest saabumistest", subLead:"Ütle, mida otsid. Anname teada, kui sobiv sõiduk saabub.", subContact:"E-post või WhatsAppi number", subBtn:"Anna teada", subSent:"Valmis! Võtame ühendust, kui sobiv sõiduk saabub.",
+navVin:"VIN-kontroll", vinTitle:"VIN-kontroll", vinLead:"Kontrolli sõiduki ajalugu enne ostu. Sisesta VIN, maksa veebis ja saa aruanne e-postile.", vinH:"Aruandes on", vinI1:"Avariid ja kahjustused", vinI2:"Läbisõidu ajalugu, odomeetri kontroll", vinI3:"Varastatud ja tagaotsitavate andmebaasid", vinI4:"Varasemad omanikud ja registreerimised", vinLabel:"VIN (17 märki)", vinEmailL:"E-post aruande jaoks", vinBtn:"Kontrolli VIN", vinErr:"Sisesta 17-märgiline VIN ja e-post.", vinOrder:"Sinu tellimus", vinPayNote:"Demo: siia ühendatakse päris kaardimakse (Paysera / Stripe).", vinPay:"Maksa", vinBackL:"Tagasi", vinDone:"Makse laekus. Aruanne saadetakse aadressile", vinAnother:"Kontrolli teist VIN-i", vinCta:"VIN-kontroll",
 howTitle:"Kuidas see töötab", how1:"Vali sõiduk, varuosa või rehvid", how2:"Kirjuta meile WhatsAppis või telli tagasihelistus", how3:"Tule lattu või lepi kokku kohaletoimetamine",
 sellBandTitle:"Tahad oma autot müüa?", contactTitle:"Kontakt", address:"[Aadress]", phone:"[Telefon]", hours:"[Lahtiolekuajad]",
 stockTitle:"Sõidukid laos", fMake:"Mark", fYear:"Aasta", fMileage:"Läbisõit", fFuel:"Kütus", sortLabel:"Sorteeri", sortAsc:"Hind: kasvav", sortDesc:"Hind: kahanev", sortYear:"Uuemad enne",
@@ -677,7 +699,7 @@ const PRICES = ["€ 10 000","€ 20 000","€ 30 000","€ 50 000","€ 100 000
 class Component extends DCLogic {
   constructor(...a) {
     super(...a);
-    this.state = {menuOpen:false, langOpen:false, theme:5, lang:"en", view:"home", cat:"all", fuel:"all", sort:"asc", carId:"u1", tab:"parts", season:"all", chat:false, make:"", year:"", km:"", maxPrice:"", tw:"", tp:"", tr:"", pcat:-1, sent:false, cbSent:false, subMake:"", subMax:"", subSent:false, price:30000, down:6000, term:48};
+    this.state = {menuOpen:false, langOpen:false, theme:5, lang:"en", view:"home", cat:"all", fuel:"all", sort:"asc", carId:"u1", tab:"parts", season:"all", chat:false, make:"", year:"", km:"", maxPrice:"", tw:"", tp:"", tr:"", pcat:-1, sent:false, cbSent:false, subMake:"", subMax:"", subSent:false, vin:"", vinMail:"", vinStep:0, vinErr:false, price:30000, down:6000, term:48};
   }
   componentDidMount() {
     try {
@@ -740,7 +762,7 @@ class Component extends DCLogic {
       pick: () => this.setState({view:"detail", carId:c.id, cbSent:false})
     });
 
-    const navItems = [["cars", T.navCars], ["parts", T.navParts], ["sell", T.navSell], ["finance", T.navFinance]].map(([v, label]) => {
+    const navItems = [["cars", T.navCars], ["parts", T.navParts], ["sell", T.navSell], ["finance", T.navFinance], ["vin", T.navVin]].map(([v, label]) => {
       const active = s.view === v || (v === "cars" && s.view === "detail");
       return {label, pick: go(v), bb: active ? "var(--ac)" : "transparent"};
     });
@@ -814,7 +836,11 @@ class Component extends DCLogic {
     return {
       t: T, accent, brand, th, themeBtns,
       isHome: s.view === "home", isCars: s.view === "cars", isDetail: s.view === "detail",
-      isParts: s.view === "parts", isSell: s.view === "sell", isFinance: s.view === "finance",
+      isParts: s.view === "parts", isSell: s.view === "sell", isFinance: s.view === "finance", isVin: s.view === "vin",
+      vinStep0: s.vinStep === 0, vinStep1: s.vinStep === 1, vinStep2: s.vinStep === 2, vinErr: s.vinErr, vinVal: s.vin, vinMail: s.vinMail, vinPrice: "€ 9.90",
+      onVin: (e) => this.setState({vin: e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, ""), vinErr:false}), onVinMail: (e) => this.setState({vinMail: e.target.value, vinErr:false}),
+      vinNext: () => this.setState(/^[A-HJ-NPR-Z0-9]{17}$/.test(s.vin) && /^\S+@\S+\.\S+$/.test(s.vinMail) ? {vinStep:1, vinErr:false} : {vinErr:true}),
+      vinPayGo: () => this.setState({vinStep:2}), vinBack: () => this.setState({vinStep:0}), vinReset: () => this.setState({vinStep:0, vin:"", vinMail:""}), goVin: go("vin"),
       goHome: go("home"), goCars: () => this.setState({view:"cars", cat:"all", make:"", year:"", km:"", maxPrice:"", fuel:"all"}),
       goCarsKeep: go("cars"), goParts: () => this.setState({view:"parts", tab:"parts"}), goTires: () => this.setState({view:"parts", tab:"tires"}),
       goSell: go("sell"), goFinance: go("finance"), goSearch: go("cars"),
