@@ -11,7 +11,23 @@
 body{margin:0;background:var(--bg)}
 a{color:inherit}
 button{font-family:inherit;cursor:pointer}
-.card:hover{border-color:var(--bd2) !important;box-shadow:0 4px 14px rgba(31,41,51,.12)}
+.card{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.card:hover{border-color:var(--ac) !important;box-shadow:0 10px 28px rgba(0,0,0,.35);transform:translateY(-4px)}
+.card svg{transition:transform .4s ease}
+.card:hover svg{transform:translateX(8px) scale(1.05)}
+button,a{transition:transform .15s ease,filter .15s ease,background-color .2s ease,border-color .2s ease}
+button:hover{filter:brightness(1.12)}
+button:active{transform:scale(.97)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:translateY(-6px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.enter main section,.enter main section>*{animation:fadeUp .6s cubic-bezier(.2,.7,.2,1) both}
+.enter main section:nth-child(2){animation-delay:.08s}
+.enter main section:nth-child(3){animation-delay:.16s}
+.enter main section:nth-child(n+4){animation-delay:.24s}
+[style*="top:50px"]{animation:pop .18s ease-out}
+[aria-label="AI assistant"],[aria-expanded]{will-change:transform}
+@media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
 .tile:hover{background:var(--surf2) !important}
 button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
 </style>
@@ -837,6 +853,7 @@ function render(){
  const ss=ai>=0?[document.activeElement.selectionStart,document.activeElement.selectionEnd]:null;
  const sy=window.scrollY;
  handlers=[];
+ const v0=inst.state.view; if(v0!==window.__lv){window.__lv=v0;root.classList.add('enter');clearTimeout(window.__et);window.__et=setTimeout(()=>root.classList.remove('enter'),900);}
  const vals=inst.renderVals();
  root.innerHTML=kids(tpl,vals);
  root.querySelectorAll('select[data-value]').forEach(s=>{s.value=s.getAttribute('data-value')});
