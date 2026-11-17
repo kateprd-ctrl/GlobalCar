@@ -28,8 +28,8 @@ button:active{transform:scale(.97)}
 .enter main section:nth-child(n+4){animation-delay:.24s}
 [style*="top:70px"]{animation:pop .18s ease-out}
 [aria-label="AI assistant"],[aria-expanded]{will-change:transform}
-.hdr-nav{display:none}
-@media(max-width:700px){[aria-label=Theme]{bottom:84px !important}}
+.hdr-nav{display:none}.hdr-tg{display:none}@media(min-width:700px){.hdr-tg{display:inline-flex}.menu-tg{display:none !important}}
+
 @media(min-width:1280px){.hdr{grid-template-columns:auto 1fr auto !important;gap:24px !important}.hdr-logo{order:1}.hdr-nav{order:2;display:flex;justify-content:center;gap:4px}.hdr-lang{order:3;justify-self:end !important}.hdr-burger{display:none !important}.lang-dd{left:auto !important;right:max(28px,calc((100vw - 1160px)/2 + 28px)) !important}}
 @media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
 .tile:hover{background:var(--surf2) !important}
@@ -46,7 +46,7 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible{ou
 <!-- HEADER -->
 <header style="background:#0A0A0B;border-bottom:1px solid var(--line)">
 <div class="hdr" style="max-width:1160px;margin:0 auto;padding:10px 28px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px">
-<div class="hdr-lang" style="justify-self:start"><div style="position:relative">
+<div class="hdr-lang" style="justify-self:start;display:flex;align-items:center;gap:10px"><div style="position:relative">
 <button onClick="{{toggleLang}}" aria-label="Language" aria-expanded="{{langOpen}}" style="min-height:44px;padding:0 14px;border-radius:999px;border:1px solid #6F86A3;background:transparent;color:#FFFFFF;display:inline-flex;align-items:center;gap:8px;font:600 14px 'Inter',sans-serif"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c3 3 3 16 0 19M12 2.5c-3 3-3 16 0 19"/></svg>{{curLang}}</button>
 <template data-if="langOpen">
 <div class="lang-dd" style="position:fixed;left:28px;top:70px;z-index:60;min-width:150px;max-width:calc(100vw - 32px);background:#151A20;border:1px solid #3A4552;border-radius:12px;padding:6px;display:flex;flex-direction:column;box-shadow:0 8px 24px rgba(0,0,0,.4)">
@@ -55,7 +55,7 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible{ou
 </template>
 </div>
 </template>
-</div></div>
+</div><button role="switch" aria-label="Theme" aria-checked="{{themeDark}}" onClick="{{toggleTheme}}" class="hdr-tg" style="min-height:44px;padding:0 12px;border-radius:999px;border:1px solid #6F86A3;background:transparent;color:#FFFFFF;align-items:center;gap:8px;font:600 14px 'Inter',sans-serif;"><span aria-hidden="true">☀</span><span style="position:relative;width:40px;height:22px;border-radius:999px;background:#2A323C;border:1px solid #6F86A3;display:inline-block"><span style="position:absolute;top:2px;left:{{themeKnobH}};width:16px;height:16px;border-radius:50%;background:var(--ac)"></span></span><span aria-hidden="true">☾</span></button></div>
 <button class="hdr-logo" onClick="{{goHome}}" aria-label="{{brand}}" style="background:none;border:0;padding:0;min-height:56px;min-width:0;display:flex;align-items:center;gap:10px;color:var(--ac);font:700 clamp(15px,4.5vw,20px)/1 'Space Grotesk',sans-serif;white-space:nowrap;letter-spacing:.02em"><img src="logo-mark.png" alt="" style="height:clamp(34px,10vw,46px);width:auto;display:block"><span>{{brand}}</span></button>
 <nav class="hdr-nav" aria-label="Main menu">
 <template data-for="navItems" data-as="n">
@@ -66,6 +66,7 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible{ou
 <button onClick="{{toggleMenu}}" aria-label="Menu" aria-expanded="{{menuOpen}}" style="width:46px;min-height:44px;border-radius:999px;border:1px solid #6F86A3;background:transparent;color:#FFFFFF;display:inline-flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
 <template data-if="menuOpen">
 <nav aria-label="Main" style="position:fixed;right:28px;top:70px;z-index:60;min-width:220px;max-width:calc(100vw - 32px);background:#151A20;border:1px solid #3A4552;border-radius:12px;padding:6px;display:flex;flex-direction:column;box-shadow:0 8px 24px rgba(0,0,0,.4)">
+<button role="switch" aria-label="Theme" aria-checked="{{themeDark}}" onClick="{{toggleTheme}}" class="menu-tg" style="min-height:44px;padding:0 12px;border-radius:999px;border:1px solid #6F86A3;background:transparent;color:#FFFFFF;align-items:center;gap:8px;font:600 14px 'Inter',sans-serif;display:flex;justify-content:center;margin:4px 6px 8px"><span aria-hidden="true">☀</span><span style="position:relative;width:40px;height:22px;border-radius:999px;background:#2A323C;border:1px solid #6F86A3;display:inline-block"><span style="position:absolute;top:2px;left:{{themeKnobH}};width:16px;height:16px;border-radius:50%;background:var(--ac)"></span></span><span aria-hidden="true">☾</span></button>
 <template data-for="navItems" data-as="n">
 <button onClick="{{n.pick}}" style="text-align:left;min-height:44px;padding:0 14px;border:0;border-radius:8px;background:transparent;color:#FFFFFF;font:600 15px 'Inter',sans-serif;border-left:3px solid {{n.bb}}">{{n.label}}</button>
 </template>
@@ -602,7 +603,6 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible{ou
 </div>
 </footer>
 
-<button role="switch" aria-label="Theme" aria-checked="{{themeDark}}" onClick="{{toggleTheme}}" style="position:fixed;left:16px;bottom:16px;z-index:50;display:flex;align-items:center;gap:8px;background:var(--surf);border:1px solid var(--bd2);border-radius:999px;padding:6px 10px;color:var(--tx);font:600 14px 'Inter',sans-serif;min-height:44px"><span aria-hidden="true">☀</span><span style="position:relative;width:44px;height:24px;border-radius:999px;background:var(--surf2);border:1px solid var(--bd2);display:inline-block"><span style="position:absolute;top:2px;left:{{themeKnob}};width:18px;height:18px;border-radius:50%;background:var(--ac)"></span></span><span aria-hidden="true">☾</span></button>
 <!-- FLOATING: WhatsApp -->
 <div style="position:fixed;right:16px;bottom:16px;z-index:50;display:flex;flex-direction:column;align-items:flex-end;gap:10px">
 
@@ -798,6 +798,7 @@ class Component extends DCLogic {
     const themeDark = (ti === 1 || ti === 0 || ti === 3 || ti === 4);
     const toggleTheme = () => this.setState({theme: themeDark ? 5 : 1});
     const themeKnob = themeDark ? "22px" : "2px";
+    const themeKnobH = themeDark ? "20px" : "2px";
     const themeBtns = [{name:"Auto", pressed: s.theme === -1, dot:"linear-gradient(90deg,#0F1B2E 50%,#E8DCC6 50%)", ring: s.theme === -1 ? th.tx : th.bd2, pick: () => this.setState({theme: -1})}].concat(THEMES.map((x, i) => ({name: x.name, pressed: s.theme === i, dot: x.dot, ring: s.theme === i ? th.tx : th.bd2, pick: () => this.setState({theme: i})})));
     const accent = this.props.accent ?? th.pr;
     const brand = this.props.brand ?? "GLOBAL CAR";
@@ -913,7 +914,7 @@ class Component extends DCLogic {
     const monthly = principal === 0 ? 0 : (rm === 0 ? principal / s.term : principal * rm / (1 - Math.pow(1 + rm, -s.term)));
 
     return {
-      t: T, accent, brand, th, themeBtns, themeDark, toggleTheme, themeKnob,
+      t: T, accent, brand, th, themeBtns, themeDark, toggleTheme, themeKnob, themeKnobH,
       isHome: s.view === "home", isCars: s.view === "cars", isDetail: s.view === "detail",
       isParts: s.view === "parts", isSell: s.view === "sell", isFinance: s.view === "finance", isVin: s.view === "vin",
       vinStep0: s.vinStep === 0, vinStep1: s.vinStep === 1, vinStep2: s.vinStep === 2, vinErr: s.vinErr, vinVal: s.vin, vinMail: s.vinMail, vinPrice: "€ 9.90",
