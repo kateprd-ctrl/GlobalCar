@@ -30,7 +30,7 @@ button:active{transform:scale(.97)}
 [aria-label="AI assistant"],[aria-expanded]{will-change:transform}
 .hdr-nav{display:none}
 @media(max-width:700px){[aria-label=Theme]{bottom:84px !important}}
-@media(min-width:900px){.hdr{grid-template-columns:auto 1fr auto !important;gap:24px !important}.hdr-logo{order:1}.hdr-nav{order:2;display:flex;justify-content:center;gap:4px}.hdr-lang{order:3;justify-self:end !important}.hdr-burger{display:none !important}.lang-dd{left:auto !important;right:max(28px,calc((100vw - 1160px)/2 + 28px)) !important}}
+@media(min-width:1280px){.hdr{grid-template-columns:auto 1fr auto !important;gap:24px !important}.hdr-logo{order:1}.hdr-nav{order:2;display:flex;justify-content:center;gap:4px}.hdr-lang{order:3;justify-self:end !important}.hdr-burger{display:none !important}.lang-dd{left:auto !important;right:max(28px,calc((100vw - 1160px)/2 + 28px)) !important}}
 @media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
 .tile:hover{background:var(--surf2) !important}
 button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
@@ -602,6 +602,7 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible{ou
 </div>
 </footer>
 
+<button role="switch" aria-label="Theme" aria-checked="{{themeDark}}" onClick="{{toggleTheme}}" style="position:fixed;left:16px;bottom:16px;z-index:50;display:flex;align-items:center;gap:8px;background:var(--surf);border:1px solid var(--bd2);border-radius:999px;padding:6px 10px;color:var(--tx);font:600 14px 'Inter',sans-serif;min-height:44px"><span aria-hidden="true">☀</span><span style="position:relative;width:44px;height:24px;border-radius:999px;background:var(--surf2);border:1px solid var(--bd2);display:inline-block"><span style="position:absolute;top:2px;left:{{themeKnob}};width:18px;height:18px;border-radius:50%;background:var(--ac)"></span></span><span aria-hidden="true">☾</span></button>
 <!-- FLOATING: WhatsApp -->
 <div style="position:fixed;right:16px;bottom:16px;z-index:50;display:flex;flex-direction:column;align-items:flex-end;gap:10px">
 
@@ -794,6 +795,9 @@ class Component extends DCLogic {
     ];
     const ti = s.theme === -1 ? (s.sysDark ? 1 : 5) : s.theme;
     const th = THEMES[ti] || THEMES[0];
+    const themeDark = (ti === 1 || ti === 0 || ti === 3 || ti === 4);
+    const toggleTheme = () => this.setState({theme: themeDark ? 5 : 1});
+    const themeKnob = themeDark ? "22px" : "2px";
     const themeBtns = [{name:"Auto", pressed: s.theme === -1, dot:"linear-gradient(90deg,#0F1B2E 50%,#E8DCC6 50%)", ring: s.theme === -1 ? th.tx : th.bd2, pick: () => this.setState({theme: -1})}].concat(THEMES.map((x, i) => ({name: x.name, pressed: s.theme === i, dot: x.dot, ring: s.theme === i ? th.tx : th.bd2, pick: () => this.setState({theme: i})})));
     const accent = this.props.accent ?? th.pr;
     const brand = this.props.brand ?? "GLOBAL CAR";
@@ -909,7 +913,7 @@ class Component extends DCLogic {
     const monthly = principal === 0 ? 0 : (rm === 0 ? principal / s.term : principal * rm / (1 - Math.pow(1 + rm, -s.term)));
 
     return {
-      t: T, accent, brand, th, themeBtns,
+      t: T, accent, brand, th, themeBtns, themeDark, toggleTheme, themeKnob,
       isHome: s.view === "home", isCars: s.view === "cars", isDetail: s.view === "detail",
       isParts: s.view === "parts", isSell: s.view === "sell", isFinance: s.view === "finance", isVin: s.view === "vin",
       vinStep0: s.vinStep === 0, vinStep1: s.vinStep === 1, vinStep2: s.vinStep === 2, vinErr: s.vinErr, vinVal: s.vin, vinMail: s.vinMail, vinPrice: "€ 9.90",
